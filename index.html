@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Grade 7–Matapat | CvSU</title>
+  <link id="favicon" rel="icon" type="image/x-icon" href="">
   <style>
     body {
       box-sizing: border-box;
@@ -691,7 +692,7 @@
     .carousel-slide img {
       width: 100%;
       height: 100%;
-      object-fit: cover;
+      object-fit: contain;
       border-radius: 20px;
       box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
     }
@@ -863,6 +864,87 @@
       margin: 40px auto;
       box-shadow: 0 20px 80px rgba(0, 0, 0, 0.4);
       animation: slideUp 0.4s ease;
+    }
+
+    @media (max-width: 768px) {
+      .modal-content {
+        margin: 0;
+        border-radius: 0;
+        max-height: 100%;
+        height: 100%;
+      }
+
+      .modal-header {
+        padding: 24px 20px;
+        border-radius: 0;
+      }
+
+      .modal-header h2 {
+        font-size: 24px;
+      }
+
+      .modal-body {
+        padding: 24px 20px;
+      }
+
+      .auth-form {
+        padding: 24px 20px;
+      }
+
+      .form-group {
+        margin-bottom: 20px;
+      }
+
+      .form-group label {
+        font-size: 13px;
+        margin-bottom: 8px;
+      }
+
+      .form-group input,
+      .form-group textarea,
+      .form-group select {
+        padding: 12px 14px;
+        font-size: 16px;
+      }
+
+      .btn {
+        padding: 12px 20px;
+        font-size: 16px;
+      }
+
+      .auth-tab {
+        padding: 10px;
+        font-size: 15px;
+      }
+
+      .admin-tabs {
+        gap: 6px;
+        padding-bottom: 2px;
+      }
+
+      .admin-tab {
+        padding: 10px 16px;
+        font-size: 14px;
+      }
+
+      .admin-item {
+        padding: 20px;
+        flex-direction: column;
+        gap: 12px;
+      }
+
+      .admin-item .btn {
+        width: 100%;
+      }
+
+      .form-actions {
+        flex-direction: column;
+        gap: 10px;
+      }
+
+      .form-actions .btn {
+        width: 100%;
+      }
     }
 
     @keyframes slideUp {
@@ -1768,7 +1850,7 @@
       </div>
      </div><!-- Admin Panel -->
      <div id="adminContent" style="display: none;">
-      <div class="admin-tabs"><button class="admin-tab active" data-tab="images">���️ Gallery</button> <button class="admin-tab" data-tab="announcements">📢 Announcements</button> <button class="admin-tab" data-tab="assignments">📚 Assignments</button> <button class="admin-tab" data-tab="events">📅 Events</button> <button class="admin-tab" data-tab="research">🔬 Research</button> <button class="admin-tab" data-tab="students">👥 Students</button> <button class="admin-tab" data-tab="contacts">✉️ Contacts</button>
+      <div class="admin-tabs"><button class="admin-tab active" data-tab="images">🖼️ Gallery</button> <button class="admin-tab" data-tab="announcements">📢 Announcements</button> <button class="admin-tab" data-tab="assignments">📚 Assignments</button> <button class="admin-tab" data-tab="events">📅 Events</button> <button class="admin-tab" data-tab="research">🔬 Research</button> <button class="admin-tab" data-tab="students">👥 Students</button> <button class="admin-tab" data-tab="contacts">✉️ Contacts</button>
       </div><!-- Images Tab -->
       <div class="tab-content active" id="tab-images">
        <h3 style="margin-bottom: 24px; font-size: 24px; color: #1B5E20;">Manage Gallery Images</h3>
@@ -1894,7 +1976,8 @@
       main_title: "Grade 7–Matapat",
       subtitle: "Cavite State University",
       room_motto: "Excellence in Education, Character, and Service",
-      room_logo_path: "logo.jpg",
+      room_logo_path: "",
+      favicon_path: "",
       github_username: "Landing749",
       github_repo: "7-Matapat",
       primary_color: "#1B5E20",
@@ -1933,6 +2016,16 @@
       }
     }
 
+    // Load favicon
+    function loadFavicon() {
+      const faviconPath = config.favicon_path || defaultConfig.favicon_path;
+      if (faviconPath) {
+        const faviconUrl = buildImageUrl(faviconPath);
+        const favicon = document.getElementById('favicon');
+        favicon.href = faviconUrl;
+      }
+    }
+
     // Utility Functions
     function showToast(message, isError = false) {
       const toast = document.createElement('div');
@@ -1953,7 +2046,7 @@
 
     menuToggle.addEventListener('click', () => {
       navbarMenu.classList.toggle('active');
-      menuToggle.textContent = navbarMenu.classList.contains('active') ? '���' : '☰';
+      menuToggle.textContent = navbarMenu.classList.contains('active') ? '✕' : '☰';
     });
 
     // Close menu when clicking links
@@ -2203,11 +2296,6 @@
         };
         slide.appendChild(imgEl);
         
-        const overlay = document.createElement('div');
-        overlay.className = 'carousel-overlay';
-        overlay.innerHTML = `<h3 style="font-size: 24px; margin: 0;">Image ${index + 1}</h3>`;
-        slide.appendChild(overlay);
-        
         track.appendChild(slide);
       });
 
@@ -2418,7 +2506,7 @@
               <div>
                 <div class="card-title" style="margin: 0;">${asn.title}</div>
                 <div class="card-meta" style="margin: 4px 0 0 0;">
-                  <span class="card-meta-icon">��</span>
+                  <span class="card-meta-icon">⏰</span>
                   Due: ${new Date(asn.dueDate).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}
                 </div>
               </div>
@@ -2520,7 +2608,7 @@
     function renderAdminEvents(events) {
       const list = document.getElementById('eventsList');
       if (events.length === 0) {
-        list.innerHTML = '<div class="empty-state"><div class="empty-state-icon">📅</div><div>No events yet.</div></div>';
+        list.innerHTML = '<div class="empty-state"><div class="empty-state-icon">����</div><div>No events yet.</div></div>';
         return;
       }
 
@@ -2596,7 +2684,7 @@
             ${post.link ? `
             <div style="margin-top: 16px; padding-top: 16px; border-top: 1px solid #f0f0f0;">
               <a href="${post.link}" target="_blank" rel="noopener noreferrer" class="card-link">
-                Read More ��
+                Read More →
               </a>
             </div>
             ` : ''}
@@ -2727,38 +2815,87 @@
             <div class="admin-item-meta">💼 ${student.role}</div>
             <div class="admin-item-desc">"${student.motto}"</div>
           </div>
-          <button class="btn btn-danger btn-small" onclick="deleteStudent('${student.id}')">Delete</button>
+          <div style="display: flex; gap: 8px;">
+            <button class="btn btn-secondary btn-small" onclick="editStudent('${student.id}', '${student.name.replace(/'/g, "\\'")}', '${student.role.replace(/'/g, "\\'")}', '${student.motto.replace(/'/g, "\\'")}')">Edit</button>
+            <button class="btn btn-danger btn-small" onclick="deleteStudent('${student.id}')">Delete</button>
+          </div>
         </div>
       `).join('');
     }
+
+    let editingStudentId = null;
 
     document.getElementById('addStudentBtn').addEventListener('click', async () => {
       if (!isAdmin) return;
       const name = document.getElementById('studentName').value.trim();
       const role = document.getElementById('studentRole').value.trim();
       const motto = document.getElementById('studentMotto').value.trim();
+      const btn = document.getElementById('addStudentBtn');
 
       if (!name || !role || !motto) {
         showToast('Please fill in all fields', true);
         return;
       }
 
-      await db.ref('students').push({
-        name,
-        role,
-        motto
-      });
+      if (editingStudentId) {
+        // Update existing student
+        await db.ref(`students/${editingStudentId}`).update({
+          name,
+          role,
+          motto
+        });
+        showToast('Student updated successfully!');
+        editingStudentId = null;
+        btn.textContent = 'Add Student';
+        btn.classList.remove('btn-secondary');
+        btn.classList.add('btn-success');
+      } else {
+        // Add new student
+        await db.ref('students').push({
+          name,
+          role,
+          motto
+        });
+        showToast('Student added successfully!');
+      }
 
       document.getElementById('studentName').value = '';
       document.getElementById('studentRole').value = '';
       document.getElementById('studentMotto').value = '';
-      showToast('Student added successfully!');
     });
+
+    window.editStudent = (id, name, role, motto) => {
+      if (!isAdmin) return;
+      editingStudentId = id;
+      document.getElementById('studentName').value = name;
+      document.getElementById('studentRole').value = role;
+      document.getElementById('studentMotto').value = motto;
+      
+      const btn = document.getElementById('addStudentBtn');
+      btn.textContent = 'Update Student';
+      btn.classList.remove('btn-success');
+      btn.classList.add('btn-secondary');
+      
+      // Scroll to form
+      document.getElementById('studentName').scrollIntoView({ behavior: 'smooth', block: 'center' });
+      document.getElementById('studentName').focus();
+    };
 
     window.deleteStudent = async (id) => {
       if (!isAdmin) return;
       await db.ref(`students/${id}`).remove();
       showToast('Student deleted successfully!');
+      
+      // Cancel edit mode if deleting the student being edited
+      if (editingStudentId === id) {
+        editingStudentId = null;
+        document.getElementById('addStudentBtn').textContent = 'Add Student';
+        document.getElementById('addStudentBtn').classList.remove('btn-secondary');
+        document.getElementById('addStudentBtn').classList.add('btn-success');
+        document.getElementById('studentName').value = '';
+        document.getElementById('studentRole').value = '';
+        document.getElementById('studentMotto').value = '';
+      }
     };
 
     // Contact Form
@@ -2854,6 +2991,7 @@
       document.getElementById('roomMotto').textContent = newConfig.room_motto || defaultConfig.room_motto;
 
       loadRoomLogo();
+      loadFavicon();
 
       const primaryColor = newConfig.primary_color || defaultConfig.primary_color;
       const accentColor = newConfig.accent_color || defaultConfig.accent_color;
@@ -2915,11 +3053,12 @@
           ["subtitle", config.subtitle || defaultConfig.subtitle],
           ["room_motto", config.room_motto || defaultConfig.room_motto],
           ["room_logo_path", config.room_logo_path || defaultConfig.room_logo_path],
+          ["favicon_path", config.favicon_path || defaultConfig.favicon_path],
           ["github_username", config.github_username || defaultConfig.github_username],
           ["github_repo", config.github_repo || defaultConfig.github_repo]
         ])
       });
     }
   </script>
- <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9a942026d5fbfcf3',t:'MTc2NDk0MzgxMi4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9a944f70a7c249d1',t:'MTc2NDk0NTc0OS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
