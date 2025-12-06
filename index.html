@@ -23,6 +23,128 @@
       line-height: 1.6;
       width: 100%;
       overflow-x: hidden;
+      transition: background 0.5s ease;
+    }
+
+    /* Seasonal Themes */
+    body.theme-spring {
+      background: linear-gradient(135deg, #FFF3E0 0%, #FFE0B2 100%);
+    }
+
+    body.theme-spring .hero {
+      background: linear-gradient(135deg, #66BB6A 0%, #81C784 50%, #A5D6A7 100%);
+    }
+
+    body.theme-summer {
+      background: linear-gradient(135deg, #E3F2FD 0%, #BBDEFB 100%);
+    }
+
+    body.theme-summer .hero {
+      background: linear-gradient(135deg, #42A5F5 0%, #64B5F6 50%, #90CAF9 100%);
+    }
+
+    body.theme-autumn {
+      background: linear-gradient(135deg, #FFF8E1 0%, #FFECB3 100%);
+    }
+
+    body.theme-autumn .hero {
+      background: linear-gradient(135deg, #FF7043 0%, #FF8A65 50%, #FFAB91 100%);
+    }
+
+    body.theme-winter {
+      background: linear-gradient(135deg, #E1F5FE 0%, #B3E5FC 100%);
+    }
+
+    body.theme-winter .hero {
+      background: linear-gradient(135deg, #0277BD 0%, #0288D1 50%, #03A9F4 100%);
+    }
+
+    /* Falling Leaves Animation */
+    .falling-leaf {
+      position: fixed;
+      width: 20px;
+      height: 20px;
+      pointer-events: none;
+      z-index: 9999;
+      animation: fall linear infinite;
+      opacity: 0.8;
+    }
+
+    @keyframes fall {
+      0% {
+        transform: translateY(-100px) rotate(0deg);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(100vh) rotate(360deg);
+        opacity: 0.3;
+      }
+    }
+
+    /* Snowflakes Animation */
+    .snowflake {
+      position: fixed;
+      color: white;
+      font-size: 20px;
+      pointer-events: none;
+      z-index: 9999;
+      animation: snowfall linear infinite;
+      text-shadow: 0 0 5px rgba(255, 255, 255, 0.8);
+    }
+
+    @keyframes snowfall {
+      0% {
+        transform: translateY(-100px) translateX(0);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(100vh) translateX(50px);
+        opacity: 0.3;
+      }
+    }
+
+    /* Flowers Animation */
+    .flower {
+      position: fixed;
+      font-size: 24px;
+      pointer-events: none;
+      z-index: 9999;
+      animation: floatUp linear infinite;
+    }
+
+    @keyframes floatUp {
+      0% {
+        transform: translateY(100vh) rotate(0deg);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(-100px) rotate(360deg);
+        opacity: 0.3;
+      }
+    }
+
+    /* Sun rays Animation */
+    .sun-ray {
+      position: fixed;
+      font-size: 30px;
+      pointer-events: none;
+      z-index: 9999;
+      animation: sunshine linear infinite;
+      text-shadow: 0 0 10px rgba(255, 215, 0, 0.8);
+    }
+
+    @keyframes sunshine {
+      0% {
+        transform: translateY(-100px) scale(0.5);
+        opacity: 1;
+      }
+      50% {
+        opacity: 0.8;
+      }
+      100% {
+        transform: translateY(100vh) scale(1.2);
+        opacity: 0;
+      }
     }
 
     /* Sticky Navbar */
@@ -232,6 +354,7 @@
       position: relative;
       overflow: hidden;
       width: 100%;
+      transition: background 0.5s ease;
     }
 
     .hero::before {
@@ -473,6 +596,257 @@
       line-height: 1.8;
     }
 
+    /* Weather Widget Styles */
+    .weather-widget-container {
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .weather-widget {
+      background: white;
+      border-radius: 24px;
+      padding: 40px;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .weather-widget::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(33, 150, 243, 0.05) 0%, transparent 70%);
+      animation: weatherPulse 4s ease-in-out infinite;
+    }
+
+    @keyframes weatherPulse {
+      0%, 100% { transform: scale(1); opacity: 0.5; }
+      50% { transform: scale(1.1); opacity: 0.8; }
+    }
+
+    .weather-icon-display {
+      font-size: 120px;
+      margin-bottom: 20px;
+      animation: weatherFloat 3s ease-in-out infinite;
+      position: relative;
+      z-index: 1;
+    }
+
+    @keyframes weatherFloat {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-10px); }
+    }
+
+    .weather-temp {
+      font-size: 64px;
+      font-weight: 900;
+      color: #1976D2;
+      margin-bottom: 12px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .weather-description {
+      font-size: 24px;
+      color: #666;
+      font-weight: 600;
+      margin-bottom: 24px;
+      text-transform: capitalize;
+      position: relative;
+      z-index: 1;
+    }
+
+    .weather-location {
+      font-size: 18px;
+      color: #888;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      margin-bottom: 24px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .weather-details {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      margin-top: 32px;
+      padding-top: 32px;
+      border-top: 2px solid #f0f0f0;
+      position: relative;
+      z-index: 1;
+    }
+
+    .weather-detail-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .weather-detail-icon {
+      font-size: 32px;
+    }
+
+    .weather-detail-label {
+      font-size: 12px;
+      color: #888;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      font-weight: 700;
+    }
+
+    .weather-detail-value {
+      font-size: 20px;
+      color: #333;
+      font-weight: 700;
+    }
+
+    .weather-error {
+      color: #d32f2f;
+      padding: 40px 20px;
+      text-align: center;
+    }
+
+    /* Birthday Calendar Styles */
+    .birthday-calendar-container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .birthday-months {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 24px;
+      margin-top: 40px;
+    }
+
+    .birthday-month-card {
+      background: white;
+      border-radius: 20px;
+      padding: 24px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+      transition: all 0.3s ease;
+      border: 2px solid transparent;
+    }
+
+    .birthday-month-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12);
+      border-color: rgba(27, 94, 32, 0.2);
+    }
+
+    .birthday-month-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 20px;
+      padding-bottom: 16px;
+      border-bottom: 2px solid #f0f0f0;
+    }
+
+    .birthday-month-icon {
+      font-size: 32px;
+      width: 50px;
+      height: 50px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, #1B5E20, #2E7D32);
+      border-radius: 12px;
+      box-shadow: 0 4px 15px rgba(27, 94, 32, 0.25);
+    }
+
+    .birthday-month-name {
+      font-size: 24px;
+      font-weight: 800;
+      color: #1B5E20;
+      flex: 1;
+    }
+
+    .birthday-count-badge {
+      background: rgba(27, 94, 32, 0.1);
+      color: #1B5E20;
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    .birthday-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .birthday-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 12px;
+      background: linear-gradient(135deg, rgba(27, 94, 32, 0.03), rgba(46, 125, 50, 0.03));
+      border-radius: 12px;
+      transition: all 0.3s ease;
+    }
+
+    .birthday-item:hover {
+      background: linear-gradient(135deg, rgba(27, 94, 32, 0.08), rgba(46, 125, 50, 0.08));
+      transform: translateX(4px);
+    }
+
+    .birthday-item-avatar {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #1B5E20, #43A047);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      font-weight: 900;
+      color: white;
+      flex-shrink: 0;
+    }
+
+    .birthday-item-info {
+      flex: 1;
+    }
+
+    .birthday-item-name {
+      font-weight: 700;
+      color: #333;
+      font-size: 16px;
+      margin-bottom: 2px;
+    }
+
+    .birthday-item-date {
+      font-size: 14px;
+      color: #888;
+    }
+
+    .birthday-item-cake {
+      font-size: 24px;
+      animation: bounce 2s infinite;
+    }
+
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-5px); }
+    }
+
+    .birthday-empty {
+      text-align: center;
+      padding: 40px 20px;
+      color: #888;
+      font-style: italic;
+    }
+
     /* Search Bar */
     .search-container {
       position: relative;
@@ -656,6 +1030,90 @@
       gap: 10px;
     }
 
+    /* Talent Showcase - Image Card Styles */
+    .talent-card {
+      background: white;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      position: relative;
+    }
+
+    .talent-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 5px;
+      background: linear-gradient(90deg, #1B5E20, #2E7D32, #43A047);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.5s ease;
+    }
+
+    .talent-card:hover::before {
+      transform: scaleX(1);
+    }
+
+    .talent-card:hover {
+      transform: translateY(-12px);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+    }
+
+    .talent-image-container {
+      width: 100%;
+      height: 280px;
+      overflow: hidden;
+      background: linear-gradient(135deg, #f5f5f5, #e0e0e0);
+      position: relative;
+    }
+
+    .talent-image {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+
+    .talent-card:hover .talent-image {
+      transform: scale(1.05);
+    }
+
+    .talent-subject-badge {
+      position: absolute;
+      top: 16px;
+      right: 16px;
+      background: rgba(27, 94, 32, 0.95);
+      color: white;
+      padding: 8px 16px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+      backdrop-filter: blur(10px);
+    }
+
+    .talent-info {
+      padding: 24px;
+    }
+
+    .talent-student-name {
+      font-size: 20px;
+      font-weight: 800;
+      color: #1B5E20;
+      margin-bottom: 8px;
+    }
+
+    .talent-description {
+      font-size: 14px;
+      color: #666;
+      line-height: 1.6;
+    }
+
     /* Image Carousel - Modern Style */
     .carousel-section {
       background: white;
@@ -813,7 +1271,18 @@
     .student-role {
       font-size: 16px;
       color: #888;
-      margin-bottom: 20px;
+      margin-bottom: 12px;
+      font-weight: 600;
+    }
+
+    .student-birthday {
+      font-size: 14px;
+      color: #1B5E20;
+      background: rgba(27, 94, 32, 0.1);
+      padding: 6px 12px;
+      border-radius: 20px;
+      display: inline-block;
+      margin-bottom: 16px;
       font-weight: 600;
     }
 
@@ -825,6 +1294,42 @@
       border-radius: 12px;
       border-left: 4px solid #1B5E20;
       line-height: 1.7;
+      margin-top: 12px;
+    }
+
+    .student-bio {
+      font-size: 14px;
+      color: #666;
+      line-height: 1.6;
+      margin-top: 12px;
+      padding: 16px;
+      background: rgba(27, 94, 32, 0.03);
+      border-radius: 8px;
+      text-align: left;
+    }
+
+    .student-interests {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 12px;
+      justify-content: center;
+    }
+
+    .interest-tag {
+      background: linear-gradient(135deg, #1B5E20, #2E7D32);
+      color: white;
+      padding: 6px 14px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 600;
+    }
+
+    .student-fav-subject {
+      margin-top: 12px;
+      font-size: 13px;
+      color: #1B5E20;
+      font-weight: 600;
     }
 
     /* Modal - Modern Design */
@@ -864,87 +1369,6 @@
       margin: 40px auto;
       box-shadow: 0 20px 80px rgba(0, 0, 0, 0.4);
       animation: slideUp 0.4s ease;
-    }
-
-    @media (max-width: 768px) {
-      .modal-content {
-        margin: 0;
-        border-radius: 0;
-        max-height: 100%;
-        height: 100%;
-      }
-
-      .modal-header {
-        padding: 24px 20px;
-        border-radius: 0;
-      }
-
-      .modal-header h2 {
-        font-size: 24px;
-      }
-
-      .modal-body {
-        padding: 24px 20px;
-      }
-
-      .auth-form {
-        padding: 24px 20px;
-      }
-
-      .form-group {
-        margin-bottom: 20px;
-      }
-
-      .form-group label {
-        font-size: 13px;
-        margin-bottom: 8px;
-      }
-
-      .form-group input,
-      .form-group textarea,
-      .form-group select {
-        padding: 12px 14px;
-        font-size: 16px;
-      }
-
-      .btn {
-        padding: 12px 20px;
-        font-size: 16px;
-      }
-
-      .auth-tab {
-        padding: 10px;
-        font-size: 15px;
-      }
-
-      .admin-tabs {
-        gap: 6px;
-        padding-bottom: 2px;
-      }
-
-      .admin-tab {
-        padding: 10px 16px;
-        font-size: 14px;
-      }
-
-      .admin-item {
-        padding: 20px;
-        flex-direction: column;
-        gap: 12px;
-      }
-
-      .admin-item .btn {
-        width: 100%;
-      }
-
-      .form-actions {
-        flex-direction: column;
-        gap: 10px;
-      }
-
-      .form-actions .btn {
-        width: 100%;
-      }
     }
 
     @keyframes slideUp {
@@ -1176,6 +1600,205 @@
     .admin-item-desc {
       color: #555;
       line-height: 1.7;
+    }
+
+    /* Forum Styles */
+    .forum-question {
+      background: white;
+      border-radius: 20px;
+      padding: 28px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      border: 2px solid transparent;
+      cursor: pointer;
+    }
+
+    .forum-question:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12);
+      border-color: rgba(27, 94, 32, 0.2);
+    }
+
+    .forum-question-header {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 16px;
+    }
+
+    .forum-avatar {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #1B5E20, #43A047);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      font-weight: 900;
+      color: white;
+      flex-shrink: 0;
+    }
+
+    .forum-user-info {
+      flex: 1;
+    }
+
+    .forum-username {
+      font-weight: 700;
+      color: #333;
+      font-size: 16px;
+    }
+
+    .forum-timestamp {
+      font-size: 13px;
+      color: #888;
+    }
+
+    .forum-question-title {
+      font-size: 22px;
+      font-weight: 800;
+      color: #1B5E20;
+      margin-bottom: 12px;
+      line-height: 1.4;
+    }
+
+    .forum-question-body {
+      color: #555;
+      line-height: 1.7;
+      margin-bottom: 20px;
+    }
+
+    .forum-stats {
+      display: flex;
+      gap: 24px;
+      padding-top: 20px;
+      border-top: 2px solid #f0f0f0;
+    }
+
+    .forum-stat {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 14px;
+      color: #666;
+      font-weight: 600;
+    }
+
+    .forum-stat-icon {
+      font-size: 18px;
+    }
+
+    /* Forum Detail Modal */
+    .forum-detail {
+      max-height: 70vh;
+      overflow-y: auto;
+    }
+
+    .forum-detail-question {
+      padding: 32px;
+      background: linear-gradient(135deg, rgba(27, 94, 32, 0.05), rgba(46, 125, 50, 0.05));
+      border-radius: 20px;
+      margin-bottom: 32px;
+    }
+
+    .forum-detail-title {
+      font-size: 28px;
+      font-weight: 900;
+      color: #1B5E20;
+      margin-bottom: 20px;
+      line-height: 1.3;
+    }
+
+    .forum-detail-body {
+      font-size: 16px;
+      color: #555;
+      line-height: 1.8;
+      margin-bottom: 20px;
+    }
+
+    .forum-detail-meta {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding-top: 20px;
+      border-top: 2px solid rgba(27, 94, 32, 0.1);
+      font-size: 14px;
+      color: #888;
+    }
+
+    .answers-section {
+      padding: 0 32px 32px;
+    }
+
+    .answers-title {
+      font-size: 20px;
+      font-weight: 800;
+      color: #1B5E20;
+      margin-bottom: 24px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .answer-item {
+      background: #f8f9fa;
+      border-radius: 16px;
+      padding: 24px;
+      margin-bottom: 16px;
+      border: 2px solid #e9ecef;
+    }
+
+    .answer-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+
+    .answer-avatar {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #1B5E20, #43A047);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+      font-weight: 900;
+      color: white;
+      flex-shrink: 0;
+    }
+
+    .answer-username {
+      font-weight: 700;
+      color: #333;
+      font-size: 15px;
+    }
+
+    .answer-timestamp {
+      font-size: 12px;
+      color: #888;
+    }
+
+    .answer-body {
+      color: #555;
+      line-height: 1.7;
+      font-size: 15px;
+    }
+
+    .answer-form {
+      background: linear-gradient(135deg, rgba(27, 94, 32, 0.05), rgba(46, 125, 50, 0.05));
+      border-radius: 16px;
+      padding: 24px;
+      margin-top: 24px;
+    }
+
+    .no-answers {
+      text-align: center;
+      padding: 40px;
+      color: #888;
+      font-style: italic;
     }
 
     /* Empty State */
@@ -1484,6 +2107,76 @@
       }
     }
 
+    /* Theme Selector Styles */
+    .theme-selector-container {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      margin-bottom: 32px;
+    }
+
+    .theme-option {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 20px;
+      background: white;
+      border: 3px solid #e0e0e0;
+      border-radius: 16px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .theme-option:hover {
+      border-color: #1B5E20;
+      transform: translateX(4px);
+    }
+
+    .theme-option.active {
+      border-color: #1B5E20;
+      background: linear-gradient(135deg, rgba(27, 94, 32, 0.05), rgba(46, 125, 50, 0.05));
+    }
+
+    .theme-info {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .theme-emoji {
+      font-size: 36px;
+      width: 60px;
+      height: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, rgba(27, 94, 32, 0.1), rgba(46, 125, 50, 0.1));
+      border-radius: 12px;
+    }
+
+    .theme-details h4 {
+      font-size: 20px;
+      font-weight: 800;
+      color: #1B5E20;
+      margin-bottom: 4px;
+    }
+
+    .theme-details p {
+      font-size: 14px;
+      color: #888;
+    }
+
+    .theme-check {
+      font-size: 28px;
+      color: #1B5E20;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .theme-option.active .theme-check {
+      opacity: 1;
+    }
+
     /* Responsive */
     @media (max-width: 1024px) {
       .navbar-menu {
@@ -1496,6 +2189,10 @@
 
       .navbar-brand {
         font-size: 16px;
+      }
+
+      .birthday-months {
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
       }
     }
 
@@ -1639,6 +2336,103 @@
       .footer-name {
         font-size: 24px;
       }
+
+      .birthday-months {
+        grid-template-columns: 1fr;
+      }
+
+      .weather-icon-display {
+        font-size: 80px;
+      }
+
+      .weather-temp {
+        font-size: 48px;
+      }
+
+      .weather-description {
+        font-size: 20px;
+      }
+
+      .modal-header {
+        padding: 24px 20px;
+        border-radius: 0;
+      }
+
+      .modal-header h2 {
+        font-size: 24px;
+      }
+
+      .modal-body {
+        padding: 24px 20px;
+      }
+
+      .auth-form {
+        padding: 24px 20px;
+      }
+
+      .form-group {
+        margin-bottom: 20px;
+      }
+
+      .form-group label {
+        font-size: 13px;
+        margin-bottom: 8px;
+      }
+
+      .form-group input,
+      .form-group textarea,
+      .form-group select {
+        padding: 12px 14px;
+        font-size: 16px;
+      }
+
+      .btn {
+        padding: 12px 20px;
+        font-size: 16px;
+      }
+
+      .auth-tab {
+        padding: 10px;
+        font-size: 15px;
+      }
+
+      .admin-tabs {
+        gap: 6px;
+        padding-bottom: 2px;
+      }
+
+      .admin-tab {
+        padding: 10px 16px;
+        font-size: 14px;
+      }
+
+      .admin-item {
+        padding: 20px;
+        flex-direction: column;
+        gap: 12px;
+      }
+
+      .admin-item .btn {
+        width: 100%;
+      }
+
+      .form-actions {
+        flex-direction: column;
+        gap: 10px;
+      }
+
+      .form-actions .btn {
+        width: 100%;
+      }
+
+      .weather-details {
+        grid-template-columns: 1fr;
+        gap: 16px;
+      }
+
+      .talent-image-container {
+        height: 220px;
+      }
     }
 
     /* Scroll Animations */
@@ -1655,23 +2449,22 @@
   </style>
   <style>@view-transition { navigation: auto; }</style>
   <script src="/_sdk/data_sdk.js" type="text/javascript"></script>
+  <script src="/_sdk/element_sdk.js" type="text/javascript"></script>
   <script src="https://cdn.tailwindcss.com" type="text/javascript"></script>
  </head>
  <body><!-- Sticky Navbar -->
   <nav class="navbar" id="navbar">
-   <div class="navbar-container"><a href="#" class="navbar-brand"> <img id="navRoomLogo" src="" alt="Logo" class="nav-logo" style="display: none;"> </a> <button class="menu-toggle" id="menuToggle">☰</button>
-    <div class="navbar-menu" id="navbarMenu"><a href="#gallery" class="nav-link">Gallery</a> <a href="#announcements" class="nav-link">Announcements</a> <a href="#assignments" class="nav-link">Assignments</a> <a href="#events" class="nav-link">Events</a> <a href="#research" class="nav-link">Research</a> <a href="#students" class="nav-link">Students</a> <a href="#contact" class="nav-link">Contact</a>
+   <div class="navbar-container"><a href="#" class="navbar-brand"> <img id="navRoomLogo" src="" alt="Logo" class="nav-logo" style="display: none;"> <span>Grade 7–Matapat</span> </a> <button class="menu-toggle" id="menuToggle">☰</button>
+    <div class="navbar-menu" id="navbarMenu"><a href="#gallery" class="nav-link">Gallery</a> <a href="#weather" class="nav-link">Weather</a> <a href="#talents" class="nav-link">Talents</a> <a href="#forum" class="nav-link">Forum</a> <a href="#birthdays" class="nav-link">Calendar</a> <a href="#announcements" class="nav-link">Announcements</a> <a href="#assignments" class="nav-link">Assignments</a> <a href="#events" class="nav-link">Events</a> <a href="#research" class="nav-link">Research</a> <a href="#students" class="nav-link">Students</a> <a href="#contact" class="nav-link">Contact</a>
     </div>
     <div class="nav-buttons" id="navButtons"><button class="btn btn-outline" id="loginNavBtn">Login</button> <button class="btn btn-primary" id="signupNavBtn">Sign Up</button>
     </div>
    </div>
   </nav><!-- Hero Section with Motto -->
   <header class="hero">
-   <div class="hero-content"><!-- Room Logo -->
-    <div class="room-logo-container"><img id="navRoomLogo2" src="" alt="Logo" class="nav-logo" style="width: 80px; height: 80px; display: none; filter: drop-shadow(0 4px 20px rgba(0, 0, 0, 0.3)); margin-bottom: 16px;"> <img id="roomLogo" src="" alt="Room Logo" class="room-logo" style="display: none;">
-    </div>
+   <div class="hero-content">
     <h1 id="mainTitle">Grade 7–Matapat</h1>
-    <p class="subtitle" id="subtitle">Cavite State University</p><!-- Room Motto - Main Feature -->
+    <p class="subtitle" id="subtitle">Cavite State University</p><!-- Room Motto -->
     <div class="motto-container">
      <svg class="motto-decoration left" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><path d="M20,50 Q30,30 50,40 T80,50" stroke="currentColor" stroke-width="2" fill="none" opacity="0.6" /> <circle cx="20" cy="50" r="3" fill="currentColor" /> <circle cx="50" cy="40" r="2" fill="currentColor" /> <circle cx="80" cy="50" r="3" fill="currentColor" />
      </svg>
@@ -1706,6 +2499,56 @@
     <div class="loading">
      <div class="spinner"></div>
      <p>Loading gallery...</p>
+    </div>
+   </div>
+  </section><!-- Weather Widget -->
+  <section class="section" id="weather" style="background: linear-gradient(135deg, #E3F2FD, #BBDEFB); padding: 60px 20px;">
+   <div class="section-header fade-in-section"><span class="section-badge">🌤️ Weather</span>
+    <h2 class="section-title">Today's Weather</h2>
+    <p class="section-description">Plan your day with current weather conditions</p>
+   </div>
+   <div class="weather-widget-container">
+    <div id="weatherWidget" class="weather-widget">
+     <div class="loading">
+      <div class="spinner"></div>
+      <p>Loading weather...</p>
+     </div>
+    </div>
+   </div>
+  </section><!-- Talent Showcase -->
+  <section class="section" id="talents">
+   <div class="section-header fade-in-section"><span class="section-badge">🎨 Talent Showcase</span>
+    <h2 class="section-title">Performance Tasks</h2>
+    <p class="section-description">Celebrating our students' creativity and hard work across all subjects</p>
+   </div>
+   <div id="talentsContainer" class="cards-grid">
+    <div class="loading">
+     <div class="spinner"></div>
+     <p>Loading talents...</p>
+    </div>
+   </div>
+  </section><!-- Forum Section -->
+  <section class="section" id="forum">
+   <div class="section-header fade-in-section"><span class="section-badge">💬 Forum</span>
+    <h2 class="section-title">Class Discussion</h2>
+    <p class="section-description">Ask questions, share ideas, and help each other learn</p><button class="btn btn-success" id="askQuestionBtn" style="margin-top: 24px;">Ask a Question</button>
+   </div>
+   <div id="forumContainer" class="cards-grid" style="margin-top: 40px;">
+    <div class="loading">
+     <div class="spinner"></div>
+     <p>Loading forum...</p>
+    </div>
+   </div>
+  </section><!-- Birthday Calendar -->
+  <section class="section" id="birthdays" style="background: linear-gradient(135deg, #f8f9fa, #ffffff);">
+   <div class="section-header fade-in-section"><span class="section-badge">📅 Calendar View</span>
+    <h2 class="section-title">Interactive Calendar</h2>
+    <p class="section-description">Birthdays, events, and assignment deadlines all in one place</p>
+   </div>
+   <div id="birthdayCalendar" class="birthday-calendar-container">
+    <div class="loading">
+     <div class="spinner"></div>
+     <p>Loading calendar...</p>
     </div>
    </div>
   </section><!-- Announcements -->
@@ -1850,13 +2693,35 @@
       </div>
      </div><!-- Admin Panel -->
      <div id="adminContent" style="display: none;">
-      <div class="admin-tabs"><button class="admin-tab active" data-tab="images">🖼️ Gallery</button> <button class="admin-tab" data-tab="announcements">📢 Announcements</button> <button class="admin-tab" data-tab="assignments">📚 Assignments</button> <button class="admin-tab" data-tab="events">📅 Events</button> <button class="admin-tab" data-tab="research">🔬 Research</button> <button class="admin-tab" data-tab="students">👥 Students</button> <button class="admin-tab" data-tab="contacts">✉️ Contacts</button>
+      <div class="admin-tabs"><button class="admin-tab active" data-tab="theme">🎨 Theme</button> <button class="admin-tab" data-tab="images">🖼️ Gallery</button> <button class="admin-tab" data-tab="talents">🎨 Talents</button> <button class="admin-tab" data-tab="forum">💬 Forum</button> <button class="admin-tab" data-tab="announcements">📢 Announcements</button> <button class="admin-tab" data-tab="assignments">📚 Assignments</button> <button class="admin-tab" data-tab="events">📅 Events</button> <button class="admin-tab" data-tab="research">🔬 Research</button> <button class="admin-tab" data-tab="students">👥 Students</button> <button class="admin-tab" data-tab="contacts">✉️ Contacts</button>
+      </div><!-- Theme Selector Tab -->
+      <div class="tab-content active" id="tab-theme">
+       <h3 style="margin-bottom: 24px; font-size: 24px; color: #1B5E20;">Seasonal Theme Selector</h3>
+       <p style="color: #666; margin-bottom: 32px;">Choose a seasonal theme with animated effects to match the time of year</p>
+       <div class="theme-selector-container" id="themeSelector"></div>
       </div><!-- Images Tab -->
-      <div class="tab-content active" id="tab-images">
+      <div class="tab-content" id="tab-images">
        <h3 style="margin-bottom: 24px; font-size: 24px; color: #1B5E20;">Manage Gallery Images</h3>
-       <div class="form-group"><label for="imagePathInput">Image Path</label> <input type="text" id="imagePathInput" placeholder="images/photo.jpg">
+       <div class="form-group"><label for="imagePathInput">Image Path in Repository</label> <input type="text" id="imagePathInput" placeholder="e.g., images/photo1.jpg">
        </div><button class="btn btn-success" id="addImageBtn">Add Image</button>
        <div class="admin-list" id="imagesList"></div>
+      </div><!-- Talents Tab -->
+      <div class="tab-content" id="tab-talents">
+       <h3 style="margin-bottom: 24px; font-size: 24px; color: #1B5E20;">Manage Talent Showcase</h3>
+       <div class="form-group"><label for="talentStudentName">Student Name</label> <input type="text" id="talentStudentName" placeholder="Enter student name">
+       </div>
+       <div class="form-group"><label for="talentSubject">Subject</label> <select id="talentSubject"> <option value="">Select a subject</option> <option value="Mathematics">Mathematics</option> <option value="Science">Science</option> <option value="English">English</option> <option value="Filipino">Filipino</option> <option value="History">History</option> <option value="Arts">Arts</option> <option value="Music">Music</option> <option value="Physical Education">Physical Education</option> <option value="Technology">Technology</option> <option value="Other">Other</option> </select>
+       </div>
+       <div class="form-group"><label for="talentImagePath">Image Path in Repository</label> <input type="text" id="talentImagePath" placeholder="e.g., images/artwork.jpg">
+       </div>
+       <div class="form-group"><label for="talentDescription">Description (Optional)</label> <textarea id="talentDescription" placeholder="Describe the work..."></textarea>
+       </div><button class="btn btn-success" id="addTalentBtn">Add Talent</button>
+       <div class="admin-list" id="talentsList"></div>
+      </div><!-- Forum Tab -->
+      <div class="tab-content" id="tab-forum">
+       <h3 style="margin-bottom: 24px; font-size: 24px; color: #1B5E20;">Manage Forum</h3>
+       <p style="color: #666; margin-bottom: 24px;">View and moderate forum questions and answers</p>
+       <div class="admin-list" id="forumList"></div>
       </div><!-- Announcements Tab -->
       <div class="tab-content" id="tab-announcements">
        <h3 style="margin-bottom: 24px; font-size: 24px; color: #1B5E20;">Manage Announcements</h3>
@@ -1904,7 +2769,15 @@
        </div>
        <div class="form-group"><label for="studentRole">Role/Position</label> <input type="text" id="studentRole" placeholder="e.g., Class President">
        </div>
-       <div class="form-group"><label for="studentMotto">Motto in Life</label> <textarea id="studentMotto" placeholder="Student's personal motto"></textarea>
+       <div class="form-group"><label for="studentBirthday">Birthday (Optional)</label> <input type="date" id="studentBirthday">
+       </div>
+       <div class="form-group"><label for="studentMotto">Motto in Life (Optional)</label> <textarea id="studentMotto" placeholder="Student's personal motto (optional)"></textarea>
+       </div>
+       <div class="form-group"><label for="studentBio">Bio (Optional)</label> <textarea id="studentBio" placeholder="Tell us about yourself..."></textarea>
+       </div>
+       <div class="form-group"><label for="studentInterests">Interests (Optional, comma-separated)</label> <input type="text" id="studentInterests" placeholder="e.g., Reading, Sports, Music">
+       </div>
+       <div class="form-group"><label for="studentFavSubject">Favorite Subject (Optional)</label> <select id="studentFavSubject"> <option value="">Select favorite subject</option> <option value="Mathematics">Mathematics</option> <option value="Science">Science</option> <option value="English">English</option> <option value="Filipino">Filipino</option> <option value="History">History</option> <option value="Arts">Arts</option> <option value="Music">Music</option> <option value="Physical Education">Physical Education</option> <option value="Technology">Technology</option> </select>
        </div><button class="btn btn-success" id="addStudentBtn">Add Student</button>
        <div class="admin-list" id="studentsList"></div>
       </div><!-- Contacts Tab -->
@@ -1913,6 +2786,18 @@
        <p style="color: #666; margin-bottom: 24px;">View messages from students and visitors</p>
        <div class="admin-list" id="contactsList"></div>
       </div><button class="btn btn-danger" style="width: 100%; margin-top: 40px;" id="logoutBtn">Logout</button>
+     </div><!-- Edit Profile Modal Content -->
+     <div id="editProfileContent" style="display: none;">
+      <div style="max-width: 700px; margin: 0 auto;">
+       <div class="form-group"><label for="profileBio">Your Bio</label> <textarea id="profileBio" placeholder="Tell everyone about yourself..." style="min-height: 150px;"></textarea>
+       </div>
+       <div class="form-group"><label for="profileInterests">Your Interests (comma-separated)</label> <input type="text" id="profileInterests" placeholder="e.g., Reading, Gaming, Sports, Music">
+       </div>
+       <div class="form-group"><label for="profileFavSubject">Favorite Subject</label> <select id="profileFavSubject"> <option value="">Select your favorite subject</option> <option value="Mathematics">Mathematics</option> <option value="Science">Science</option> <option value="English">English</option> <option value="Filipino">Filipino</option> <option value="History">History</option> <option value="Arts">Arts</option> <option value="Music">Music</option> <option value="Physical Education">Physical Education</option> <option value="Technology">Technology</option> </select>
+       </div>
+       <div class="form-actions"><button class="btn btn-secondary" onclick="closeModal()">Cancel</button> <button class="btn btn-success" id="saveProfileBtn">Save Profile</button>
+       </div>
+      </div>
      </div>
     </div>
    </div>
@@ -1920,7 +2805,6 @@
   <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-database-compat.js"></script>
-  <script src="/_sdk/element_sdk.js"></script>
   <script>
     // Firebase Configuration
     const firebaseConfig = {
@@ -1929,29 +2813,10 @@
       databaseURL: "https://machine-learning-a2301-default-rtdb.firebaseio.com",
       projectId: "machine-learning-a2301",
       storageBucket: "machine-learning-a2301.firebasestorage.app",
-      messagingSenderId: ". ",
-      appId: "1:. :web:64d8f4e4a59024314da7bd",
+      messagingSenderId: ".",
+      appId: "1:.:web:64d8f4e4a59024314da7bd",
       measurementId: "G-3E6L78B5XK"
     };
-
-    // HOW TO SETUP ADMINS IN FIREBASE REALTIME DATABASE:
-    // 1. Go to Firebase Console > Realtime Database
-    // 2. Create a node called "admins" at the root level
-    // 3. Add your user UID as a child with value "true"
-    //
-    // Structure should look like:
-    // {
-    //   "admins": {
-    //     "YOUR_USER_UID_HERE": true,
-    //     "ANOTHER_USER_UID": true
-    //   }
-    // }
-    //
-    // To find your UID:
-    // - Sign up/login to the portal first
-    // - Open browser console (F12)
-    // - Type: firebase.auth().currentUser.uid
-    // - Copy the UID and add it to the admins node
 
     firebase.initializeApp(firebaseConfig);
     const auth = firebase.auth();
@@ -1963,106 +2828,438 @@
     let carouselIndex = 0;
     let carouselImages = [];
     let carouselInterval = null;
+    let currentQuestionId = null;
     let allData = {
       students: [],
       events: [],
       research: [],
       announcements: [],
-      assignments: []
+      assignments: [],
+      talents: [],
+      forum: []
     };
+    let currentTheme = 'default';
+    let animationElements = [];
 
-    // Default Config
-    const defaultConfig = {
-      main_title: "Grade 7–Matapat",
-      subtitle: "Cavite State University",
-      room_motto: "Excellence in Education, Character, and Service",
-      room_logo_path: "",
-      favicon_path: "",
+    // Config
+    const config = {
       github_username: "Landing749",
-      github_repo: "7-Matapat",
-      primary_color: "#1B5E20",
-      accent_color: "#2E7D32",
-      card_color: "#FFFFFF"
+      github_repo: "7-Matapat"
     };
 
-    const config = { ...defaultConfig };
+    // Theme configurations
+    const themes = {
+      default: {
+        name: 'Default',
+        emoji: '🌟',
+        description: 'Classic green theme',
+        animation: null
+      },
+      spring: {
+        name: 'Spring',
+        emoji: '🌸',
+        description: 'Fresh flowers blooming upward',
+        animation: 'flowers'
+      },
+      summer: {
+        name: 'Summer',
+        emoji: '☀️',
+        description: 'Bright sunshine rays',
+        animation: 'sunrays'
+      },
+      autumn: {
+        name: 'Autumn',
+        emoji: '🍂',
+        description: 'Falling leaves',
+        animation: 'leaves'
+      },
+      winter: {
+        name: 'Winter',
+        emoji: '❄️',
+        description: 'Gentle snowflakes',
+        animation: 'snow'
+      }
+    };
 
-    // Load room logo
-    function loadRoomLogo() {
-      const logoPath = config.room_logo_path || defaultConfig.room_logo_path;
-      if (logoPath) {
-        const logoUrl = buildImageUrl(logoPath);
-        const roomLogo = document.getElementById('roomLogo');
-        const navRoomLogo = document.getElementById('navRoomLogo');
-        const navRoomLogo2 = document.getElementById('navRoomLogo2');
-        
-        roomLogo.src = logoUrl;
-        roomLogo.style.display = 'block';
-        roomLogo.onerror = function() {
-          this.style.display = 'none';
-        };
-        
-        navRoomLogo.src = logoUrl;
-        navRoomLogo.style.display = 'block';
-        navRoomLogo.onerror = function() {
-          this.style.display = 'none';
-        };
+    // Animation Functions
+    function clearAnimations() {
+      animationElements.forEach(el => el.remove());
+      animationElements = [];
+    }
 
-        navRoomLogo2.src = logoUrl;
-        navRoomLogo2.style.display = 'block';
-        navRoomLogo2.onerror = function() {
-          this.style.display = 'none';
-        };
+    function createFallingLeaves() {
+      const leaves = ['🍂', '🍁'];
+      for (let i = 0; i < 15; i++) {
+        setTimeout(() => {
+          const leaf = document.createElement('div');
+          leaf.className = 'falling-leaf';
+          leaf.textContent = leaves[Math.floor(Math.random() * leaves.length)];
+          leaf.style.left = Math.random() * 100 + '%';
+          leaf.style.animationDuration = (Math.random() * 3 + 5) + 's';
+          leaf.style.animationDelay = Math.random() * 2 + 's';
+          document.body.appendChild(leaf);
+          animationElements.push(leaf);
+          
+          setTimeout(() => leaf.remove(), 10000);
+        }, i * 300);
       }
     }
 
-    // Load favicon
-    function loadFavicon() {
-      const faviconPath = config.favicon_path || defaultConfig.favicon_path;
-      if (faviconPath) {
-        const faviconUrl = buildImageUrl(faviconPath);
-        const favicon = document.getElementById('favicon');
-        favicon.href = faviconUrl;
+    function createSnowflakes() {
+      for (let i = 0; i < 20; i++) {
+        setTimeout(() => {
+          const snowflake = document.createElement('div');
+          snowflake.className = 'snowflake';
+          snowflake.textContent = '❄';
+          snowflake.style.left = Math.random() * 100 + '%';
+          snowflake.style.fontSize = (Math.random() * 10 + 15) + 'px';
+          snowflake.style.animationDuration = (Math.random() * 3 + 4) + 's';
+          snowflake.style.animationDelay = Math.random() * 2 + 's';
+          document.body.appendChild(snowflake);
+          animationElements.push(snowflake);
+          
+          setTimeout(() => snowflake.remove(), 8000);
+        }, i * 200);
       }
     }
 
-    // Utility Functions
+    function createFlowers() {
+      const flowers = ['🌸', '🌺', '🌻', '🌷'];
+      for (let i = 0; i < 12; i++) {
+        setTimeout(() => {
+          const flower = document.createElement('div');
+          flower.className = 'flower';
+          flower.textContent = flowers[Math.floor(Math.random() * flowers.length)];
+          flower.style.left = Math.random() * 100 + '%';
+          flower.style.animationDuration = (Math.random() * 4 + 6) + 's';
+          flower.style.animationDelay = Math.random() * 2 + 's';
+          document.body.appendChild(flower);
+          animationElements.push(flower);
+          
+          setTimeout(() => flower.remove(), 12000);
+        }, i * 500);
+      }
+    }
+
+    function createSunRays() {
+      for (let i = 0; i < 10; i++) {
+        setTimeout(() => {
+          const ray = document.createElement('div');
+          ray.className = 'sun-ray';
+          ray.textContent = '✨';
+          ray.style.left = Math.random() * 100 + '%';
+          ray.style.animationDuration = (Math.random() * 2 + 3) + 's';
+          ray.style.animationDelay = Math.random() * 1 + 's';
+          document.body.appendChild(ray);
+          animationElements.push(ray);
+          
+          setTimeout(() => ray.remove(), 6000);
+        }, i * 400);
+      }
+    }
+
+    function applyTheme(theme) {
+      currentTheme = theme;
+      
+      // Remove all theme classes
+      document.body.classList.remove('theme-spring', 'theme-summer', 'theme-autumn', 'theme-winter');
+      
+      // Clear existing animations
+      clearAnimations();
+      
+      // Apply new theme
+      if (theme !== 'default') {
+        document.body.classList.add(`theme-${theme}`);
+      }
+      
+      // Start animations
+      const themeConfig = themes[theme];
+      if (themeConfig && themeConfig.animation) {
+        startThemeAnimations(themeConfig.animation);
+      }
+    }
+
+    function startThemeAnimations(animationType) {
+      if (animationType === 'leaves') {
+        createFallingLeaves();
+        setInterval(createFallingLeaves, 8000);
+      } else if (animationType === 'snow') {
+        createSnowflakes();
+        setInterval(createSnowflakes, 6000);
+      } else if (animationType === 'flowers') {
+        createFlowers();
+        setInterval(createFlowers, 10000);
+      } else if (animationType === 'sunrays') {
+        createSunRays();
+        setInterval(createSunRays, 5000);
+      }
+    }
+
+    // Load and render theme selector
+    function renderThemeSelector() {
+      const container = document.getElementById('themeSelector');
+      if (!container) return;
+      
+      container.innerHTML = Object.keys(themes).map(key => {
+        const theme = themes[key];
+        return `
+          <div class="theme-option ${currentTheme === key ? 'active' : ''}" onclick="selectTheme('${key}')">
+            <div class="theme-info">
+              <div class="theme-emoji">${theme.emoji}</div>
+              <div class="theme-details">
+                <h4>${theme.name}</h4>
+                <p>${theme.description}</p>
+              </div>
+            </div>
+            <div class="theme-check">✓</div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    window.selectTheme = async (theme) => {
+      if (!isAdmin) return;
+      
+      currentTheme = theme;
+      applyTheme(theme);
+      renderThemeSelector();
+      
+      // Save to Firebase
+      await db.ref('settings/theme').set(theme);
+      showToast(`${themes[theme].name} theme applied!`);
+    };
+
+    // Load saved theme from Firebase
+    db.ref('settings/theme').on('value', (snapshot) => {
+      const savedTheme = snapshot.val() || 'default';
+      currentTheme = savedTheme;
+      applyTheme(savedTheme);
+      if (isAdmin) {
+        renderThemeSelector();
+      }
+    });
+
+    // Auth State Observer
+    auth.onAuthStateChanged(async (user) => {
+      currentUser = user;
+      if (user) {
+        const adminSnapshot = await db.ref(`admins/${user.uid}`).once('value');
+        isAdmin = adminSnapshot.val() === true;
+        updateNavbar();
+        if (isAdmin) {
+          showAdminPanel();
+        }
+      } else {
+        isAdmin = false;
+        updateNavbar();
+      }
+    });
+
+    // Update navbar based on auth state
+    function updateNavbar() {
+      const navButtons = document.getElementById('navButtons');
+      if (currentUser) {
+        navButtons.innerHTML = isAdmin 
+          ? `<button class="btn btn-primary" onclick="openAdminPanel()">Admin Panel</button>
+             <div class="user-avatar" onclick="openEditProfile()">${currentUser.email[0].toUpperCase()}</div>`
+          : `<button class="btn btn-primary" onclick="openEditProfile()">Edit Profile</button>
+             <div class="user-avatar" onclick="openEditProfile()">${currentUser.email[0].toUpperCase()}</div>`;
+      } else {
+        navButtons.innerHTML = `
+          <button class="btn btn-outline" id="loginNavBtn">Login</button>
+          <button class="btn btn-primary" id="signupNavBtn">Sign Up</button>
+        `;
+        document.getElementById('loginNavBtn').addEventListener('click', () => openAuthModal('login'));
+        document.getElementById('signupNavBtn').addEventListener('click', () => openAuthModal('signup'));
+      }
+    }
+
+    // Modal Functions
+    function openAuthModal(tab = 'login') {
+      document.getElementById('modalTitle').textContent = 'Welcome';
+      document.getElementById('authSection').style.display = 'block';
+      document.getElementById('adminContent').style.display = 'none';
+      document.getElementById('editProfileContent').style.display = 'none';
+      document.getElementById('mainModal').classList.add('active');
+      
+      document.querySelectorAll('.auth-tab').forEach(t => t.classList.remove('active'));
+      document.querySelectorAll('.auth-content').forEach(c => c.style.display = 'none');
+      document.querySelector(`[data-auth-tab="${tab}"]`).classList.add('active');
+      document.getElementById(`auth-${tab}`).style.display = 'block';
+    }
+
+    function openAdminPanel() {
+      document.getElementById('modalTitle').textContent = 'Admin Panel';
+      document.getElementById('authSection').style.display = 'none';
+      document.getElementById('adminContent').style.display = 'block';
+      document.getElementById('editProfileContent').style.display = 'none';
+      document.getElementById('mainModal').classList.add('active');
+      renderThemeSelector();
+      loadAdminData();
+    }
+
+    function openEditProfile() {
+      if (!currentUser) {
+        openAuthModal('login');
+        return;
+      }
+      
+      document.getElementById('modalTitle').textContent = 'Edit Your Profile';
+      document.getElementById('authSection').style.display = 'none';
+      document.getElementById('adminContent').style.display = 'none';
+      document.getElementById('editProfileContent').style.display = 'block';
+      document.getElementById('mainModal').classList.add('active');
+      
+      // Load current student data
+      db.ref('students').orderByChild('email').equalTo(currentUser.email).once('value', (snapshot) => {
+        snapshot.forEach((child) => {
+          const student = child.val();
+          document.getElementById('profileBio').value = student.bio || '';
+          document.getElementById('profileInterests').value = student.interests || '';
+          document.getElementById('profileFavSubject').value = student.favoriteSubject || '';
+        });
+      });
+    }
+
+    window.closeModal = function() {
+      document.getElementById('mainModal').classList.remove('active');
+    };
+
+    document.getElementById('closeModal').addEventListener('click', closeModal);
+    document.getElementById('mainModal').addEventListener('click', (e) => {
+      if (e.target === document.getElementById('mainModal')) closeModal();
+    });
+
+    // Auth Tab Switching
+    document.querySelectorAll('.auth-tab').forEach(tab => {
+      tab.addEventListener('click', () => {
+        const tabName = tab.dataset.authTab;
+        document.querySelectorAll('.auth-tab').forEach(t => t.classList.remove('active'));
+        document.querySelectorAll('.auth-content').forEach(c => c.style.display = 'none');
+        tab.classList.add('active');
+        document.getElementById(`auth-${tabName}`).style.display = 'block';
+      });
+    });
+
+    // Admin Tab Switching
+    document.querySelectorAll('.admin-tab').forEach(tab => {
+      tab.addEventListener('click', () => {
+        const tabName = tab.dataset.tab;
+        document.querySelectorAll('.admin-tab').forEach(t => t.classList.remove('active'));
+        document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+        tab.classList.add('active');
+        document.getElementById(`tab-${tabName}`).classList.add('active');
+      });
+    });
+
+    // Login
+    document.getElementById('loginBtn').addEventListener('click', async () => {
+      const email = document.getElementById('loginEmail').value;
+      const password = document.getElementById('loginPassword').value;
+      
+      if (!email || !password) {
+        showToast('Please fill in all fields', true);
+        return;
+      }
+      
+      try {
+        await auth.signInWithEmailAndPassword(email, password);
+        closeModal();
+        showToast('Logged in successfully!');
+      } catch (error) {
+        showToast(error.message, true);
+      }
+    });
+
+    // Google Login
+    document.getElementById('googleLoginBtn').addEventListener('click', async () => {
+      try {
+        const provider = new firebase.auth.GoogleAuthProvider();
+        await auth.signInWithPopup(provider);
+        closeModal();
+        showToast('Logged in with Google!');
+      } catch (error) {
+        showToast(error.message, true);
+      }
+    });
+
+    // Signup
+    document.getElementById('signupBtn').addEventListener('click', async () => {
+      const email = document.getElementById('signupEmail').value;
+      const password = document.getElementById('signupPassword').value;
+      const confirm = document.getElementById('signupConfirm').value;
+      
+      if (!email || !password || !confirm) {
+        showToast('Please fill in all fields', true);
+        return;
+      }
+      
+      if (password !== confirm) {
+        showToast('Passwords do not match', true);
+        return;
+      }
+      
+      try {
+        await auth.createUserWithEmailAndPassword(email, password);
+        closeModal();
+        showToast('Account created successfully!');
+      } catch (error) {
+        showToast(error.message, true);
+      }
+    });
+
+    // Logout
+    document.getElementById('logoutBtn').addEventListener('click', async () => {
+      await auth.signOut();
+      closeModal();
+      showToast('Logged out successfully!');
+    });
+
+    // Save Profile
+    document.getElementById('saveProfileBtn').addEventListener('click', async () => {
+      if (!currentUser) return;
+      
+      const bio = document.getElementById('profileBio').value;
+      const interests = document.getElementById('profileInterests').value;
+      const favSubject = document.getElementById('profileFavSubject').value;
+      
+      try {
+        const snapshot = await db.ref('students').orderByChild('email').equalTo(currentUser.email).once('value');
+        
+        if (snapshot.exists()) {
+          snapshot.forEach((child) => {
+            db.ref(`students/${child.key}`).update({
+              bio: bio,
+              interests: interests,
+              favoriteSubject: favSubject
+            });
+          });
+          showToast('Profile updated successfully!');
+          closeModal();
+          loadStudents();
+        } else {
+          showToast('Student record not found. Please contact an admin.', true);
+        }
+      } catch (error) {
+        showToast(error.message, true);
+      }
+    });
+
+    // Toast
     function showToast(message, isError = false) {
       const toast = document.createElement('div');
       toast.className = `toast ${isError ? 'error' : ''}`;
       toast.textContent = message;
       document.body.appendChild(toast);
-      setTimeout(() => toast.remove(), 3500);
+      
+      setTimeout(() => {
+        toast.remove();
+      }, 3000);
     }
 
-    async function checkAdmin(uid) {
-      const snapshot = await db.ref(`admins/${uid}`).once('value');
-      return snapshot.val() === true;
-    }
-
-    // Mobile Menu Toggle
-    const menuToggle = document.getElementById('menuToggle');
-    const navbarMenu = document.getElementById('navbarMenu');
-
-    menuToggle.addEventListener('click', () => {
-      navbarMenu.classList.toggle('active');
-      menuToggle.textContent = navbarMenu.classList.contains('active') ? '✕' : '☰';
-    });
-
-    // Close menu when clicking links
-    document.querySelectorAll('.nav-link').forEach(link => {
-      link.addEventListener('click', () => {
-        navbarMenu.classList.remove('active');
-        menuToggle.textContent = '☰';
-      });
-    });
-
-    // Close menu when clicking outside
-    document.addEventListener('click', (e) => {
-      if (!navbarMenu.contains(e.target) && !menuToggle.contains(e.target)) {
-        navbarMenu.classList.remove('active');
-        menuToggle.textContent = '☰';
-      }
+    // Menu Toggle
+    document.getElementById('menuToggle').addEventListener('click', () => {
+      document.getElementById('navbarMenu').classList.toggle('active');
     });
 
     // Navbar Scroll Effect
@@ -2074,6 +3271,1221 @@
         navbar.classList.remove('scrolled');
       }
     });
+
+    // Carousel Functions
+    function buildGitHubImageUrl(path) {
+      return `https://raw.githubusercontent.com/${config.github_username}/${config.github_repo}/main/${path}`;
+    }
+
+    function renderCarousel() {
+      const container = document.getElementById('carouselContainer');
+      
+      if (carouselImages.length === 0) {
+        container.innerHTML = '<div class="carousel-empty">No images in the gallery yet. Add some from the admin panel!</div>';
+        return;
+      }
+      
+      container.innerHTML = `
+        <div class="carousel-track" id="carouselTrack">
+          ${carouselImages.map((img, i) => {
+            const imageUrl = buildGitHubImageUrl(img.path);
+            return `
+              <div class="carousel-slide">
+                <img src="${imageUrl}" alt="Gallery Image ${i + 1}" onerror="this.src=''; this.alt='Image failed to load'; this.style.display='none';">
+              </div>
+            `;
+          }).join('')}
+        </div>
+        ${carouselImages.length > 1 ? `
+          <button class="carousel-nav prev" onclick="prevSlide()">‹</button>
+          <button class="carousel-nav next" onclick="nextSlide()">›</button>
+          <div class="carousel-indicators">
+            ${carouselImages.map((_, i) => `
+              <button class="indicator ${i === 0 ? 'active' : ''}" onclick="goToSlide(${i})"></button>
+            `).join('')}
+          </div>
+        ` : ''}
+      `;
+      
+      if (carouselImages.length > 1) {
+        startCarousel();
+      }
+    }
+
+    function startCarousel() {
+      if (carouselInterval) clearInterval(carouselInterval);
+      carouselInterval = setInterval(() => {
+        nextSlide();
+      }, 5000);
+    }
+
+    window.goToSlide = function(index) {
+      carouselIndex = index;
+      updateCarousel();
+    };
+
+    window.nextSlide = function() {
+      const track = document.getElementById('carouselTrack');
+      if (!track) return;
+      
+      carouselIndex++;
+      
+      // Enable transition
+      track.style.transition = 'transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+      track.style.transform = `translateX(-${carouselIndex * 100}%)`;
+      
+      // If we've reached the end, loop back to start after transition
+      if (carouselIndex >= carouselImages.length) {
+        setTimeout(() => {
+          track.style.transition = 'none';
+          carouselIndex = 0;
+          track.style.transform = `translateX(0)`;
+        }, 600);
+      }
+      
+      updateIndicators();
+    };
+
+    window.prevSlide = function() {
+      const track = document.getElementById('carouselTrack');
+      if (!track) return;
+      
+      carouselIndex--;
+      
+      // If going before first, jump to end without transition, then animate back
+      if (carouselIndex < 0) {
+        track.style.transition = 'none';
+        carouselIndex = carouselImages.length - 1;
+        track.style.transform = `translateX(-${carouselIndex * 100}%)`;
+        
+        // Force reflow
+        track.offsetHeight;
+        
+        // Re-enable transition for smooth movement
+        setTimeout(() => {
+          track.style.transition = 'transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+        }, 10);
+      } else {
+        track.style.transition = 'transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+        track.style.transform = `translateX(-${carouselIndex * 100}%)`;
+      }
+      
+      updateIndicators();
+    };
+
+    function updateIndicators() {
+      const actualIndex = carouselIndex >= carouselImages.length ? 0 : carouselIndex;
+      document.querySelectorAll('.indicator').forEach((ind, i) => {
+        ind.classList.toggle('active', i === actualIndex);
+      });
+    }
+
+    function updateCarousel() {
+      const track = document.getElementById('carouselTrack');
+      if (track) {
+        track.style.transition = 'transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+        track.style.transform = `translateX(-${carouselIndex * 100}%)`;
+        updateIndicators();
+      }
+    }
+
+    // Load Data Functions
+    function loadGallery() {
+      db.ref('gallery').on('value', (snapshot) => {
+        carouselImages = [];
+        snapshot.forEach((child) => {
+          const data = child.val();
+          if (data.path) {
+            carouselImages.push({ 
+              id: child.key, 
+              path: data.path 
+            });
+          }
+        });
+        renderCarousel();
+      });
+    }
+
+    function loadTalents() {
+      db.ref('talents').on('value', (snapshot) => {
+        const container = document.getElementById('talentsContainer');
+        const talents = [];
+        
+        snapshot.forEach((child) => {
+          talents.push({ id: child.key, ...child.val() });
+        });
+        
+        if (talents.length === 0) {
+          container.innerHTML = '<div class="empty-state"><div class="empty-state-icon">🎨</div><p>No talents to showcase yet.</p></div>';
+          return;
+        }
+        
+        container.innerHTML = talents.map(talent => {
+          const imageUrl = buildGitHubImageUrl(talent.imagePath);
+          return `
+            <div class="card talent-card">
+              <div class="talent-image-container">
+                <img src="${imageUrl}" alt="${talent.studentName}" class="talent-image" onerror="this.src=''; this.alt='Image failed to load'; this.style.display='none';">
+                <div class="talent-subject-badge">${talent.subject}</div>
+              </div>
+              <div class="talent-info">
+                <h3 class="talent-student-name">${talent.studentName}</h3>
+                <p class="talent-description">${talent.description || 'Amazing work!'}</p>
+              </div>
+            </div>
+          `;
+        }).join('');
+      });
+    }
+
+    function loadForum() {
+      db.ref('forum').on('value', (snapshot) => {
+        const container = document.getElementById('forumContainer');
+        allData.forum = [];
+        
+        snapshot.forEach((child) => {
+          allData.forum.push({ id: child.key, ...child.val() });
+        });
+        
+        if (allData.forum.length === 0) {
+          container.innerHTML = '<div class="empty-state"><div class="empty-state-icon">💬</div><p>No questions yet. Be the first to ask!</p></div>';
+          return;
+        }
+        
+        container.innerHTML = allData.forum.map(q => `
+          <div class="forum-question" onclick="openQuestion('${q.id}')">
+            <div class="forum-question-header">
+              <div class="forum-avatar">${q.userName[0].toUpperCase()}</div>
+              <div class="forum-user-info">
+                <div class="forum-username">${q.userName}</div>
+                <div class="forum-timestamp">${new Date(q.timestamp).toLocaleDateString()}</div>
+              </div>
+            </div>
+            <h3 class="forum-question-title">${q.title}</h3>
+            <p class="forum-question-body">${q.body.substring(0, 150)}${q.body.length > 150 ? '...' : ''}</p>
+            <div class="forum-stats">
+              <div class="forum-stat">
+                <span class="forum-stat-icon">💬</span>
+                <span>${q.answers ? Object.keys(q.answers).length : 0} Answers</span>
+              </div>
+            </div>
+          </div>
+        `).join('');
+      });
+    }
+
+    window.openQuestion = function(questionId) {
+      currentQuestionId = questionId;
+      const question = allData.forum.find(q => q.id === questionId);
+      if (!question) return;
+      
+      const answers = question.answers ? Object.values(question.answers) : [];
+      
+      document.getElementById('modalTitle').textContent = 'Forum Question';
+      document.getElementById('authSection').style.display = 'none';
+      document.getElementById('adminContent').style.display = 'none';
+      document.getElementById('editProfileContent').style.display = 'none';
+      
+      const modalBody = document.querySelector('.modal-body');
+      modalBody.innerHTML = `
+        <div class="forum-detail">
+          <div class="forum-detail-question">
+            <h2 class="forum-detail-title">${question.title}</h2>
+            <p class="forum-detail-body">${question.body}</p>
+            <div class="forum-detail-meta">
+              <span>Asked by <strong>${question.userName}</strong></span>
+              <span>•</span>
+              <span>${new Date(question.timestamp).toLocaleDateString()}</span>
+            </div>
+          </div>
+          
+          <div class="answers-section">
+            <h3 class="answers-title">
+              💬 ${answers.length} ${answers.length === 1 ? 'Answer' : 'Answers'}
+            </h3>
+            
+            ${answers.length === 0 ? '<div class="no-answers">No answers yet. Be the first to help!</div>' : ''}
+            
+            ${answers.map(answer => `
+              <div class="answer-item">
+                <div class="answer-header">
+                  <div class="answer-avatar">${answer.userName[0].toUpperCase()}</div>
+                  <div>
+                    <div class="answer-username">${answer.userName}</div>
+                    <div class="answer-timestamp">${new Date(answer.timestamp).toLocaleDateString()}</div>
+                  </div>
+                </div>
+                <p class="answer-body">${answer.text}</p>
+              </div>
+            `).join('')}
+            
+            ${currentUser ? `
+              <div class="answer-form">
+                <h4 style="margin-bottom: 16px; color: #1B5E20;">Your Answer</h4>
+                <div class="form-group">
+                  <label for="answerText">Answer</label>
+                  <textarea id="answerText" placeholder="Share your knowledge..."></textarea>
+                </div>
+                <button class="btn btn-success" onclick="submitAnswer()">Submit Answer</button>
+              </div>
+            ` : `
+              <div style="text-align: center; padding: 24px; background: #f8f9fa; border-radius: 12px; margin-top: 24px;">
+                <p style="color: #666; margin-bottom: 12px;">Want to answer? Please log in first.</p>
+                <button class="btn btn-primary" onclick="closeModal(); openAuthModal('login');">Login to Answer</button>
+              </div>
+            `}
+          </div>
+        </div>
+      `;
+      
+      document.getElementById('mainModal').classList.add('active');
+    };
+
+    window.submitAnswer = async function() {
+      if (!currentUser) {
+        showToast('Please login to answer', true);
+        return;
+      }
+      
+      const text = document.getElementById('answerText').value.trim();
+      if (!text) {
+        showToast('Please enter an answer', true);
+        return;
+      }
+      
+      try {
+        await db.ref(`forum/${currentQuestionId}/answers`).push({
+          userName: currentUser.email.split('@')[0],
+          text: text,
+          timestamp: Date.now()
+        });
+        
+        showToast('Answer submitted!');
+        closeModal();
+      } catch (error) {
+        showToast(error.message, true);
+      }
+    };
+
+    document.getElementById('askQuestionBtn').addEventListener('click', () => {
+      if (!currentUser) {
+        showToast('Please login to ask a question', true);
+        openAuthModal('login');
+        return;
+      }
+      
+      document.getElementById('modalTitle').textContent = 'Ask a Question';
+      document.getElementById('authSection').style.display = 'none';
+      document.getElementById('adminContent').style.display = 'none';
+      document.getElementById('editProfileContent').style.display = 'none';
+      
+      const modalBody = document.querySelector('.modal-body');
+      modalBody.innerHTML = `
+        <div style="max-width: 700px; margin: 0 auto;">
+          <div class="form-group">
+            <label for="questionTitle">Question Title</label>
+            <input type="text" id="questionTitle" placeholder="What's your question?">
+          </div>
+          <div class="form-group">
+            <label for="questionBody">Details</label>
+            <textarea id="questionBody" placeholder="Provide more context..." style="min-height: 200px;"></textarea>
+          </div>
+          <div class="form-actions">
+            <button class="btn btn-secondary" onclick="closeModal()">Cancel</button>
+            <button class="btn btn-success" onclick="submitQuestion()">Post Question</button>
+          </div>
+        </div>
+      `;
+      
+      document.getElementById('mainModal').classList.add('active');
+    });
+
+    window.submitQuestion = async function() {
+      const title = document.getElementById('questionTitle').value.trim();
+      const body = document.getElementById('questionBody').value.trim();
+      
+      if (!title || !body) {
+        showToast('Please fill in all fields', true);
+        return;
+      }
+      
+      try {
+        await db.ref('forum').push({
+          userName: currentUser.email.split('@')[0],
+          title: title,
+          body: body,
+          timestamp: Date.now()
+        });
+        
+        showToast('Question posted!');
+        closeModal();
+      } catch (error) {
+        showToast(error.message, true);
+      }
+    };
+
+    function loadBirthdays() {
+      db.ref('students').on('value', (snapshot) => {
+        const container = document.getElementById('birthdayCalendar');
+        const studentsByMonth = {};
+        
+        snapshot.forEach((child) => {
+          const student = child.val();
+          if (student.birthday) {
+            const date = new Date(student.birthday);
+            const month = date.getMonth();
+            
+            if (!studentsByMonth[month]) {
+              studentsByMonth[month] = [];
+            }
+            
+            studentsByMonth[month].push({
+              name: student.name,
+              birthday: student.birthday,
+              day: date.getDate()
+            });
+          }
+        });
+        
+        const monthNames = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+        const monthEmojis = ['🎉', '💝', '🌸', '🌷', '🌺', '☀️', '🎆', '🌻', '🍂', '🎃', '🦃', '🎄'];
+        
+        if (Object.keys(studentsByMonth).length === 0) {
+          container.innerHTML = '<div class="empty-state"><div class="empty-state-icon">🎂</div><p>No birthdays added yet.</p></div>';
+          return;
+        }
+        
+        container.innerHTML = `
+          <div class="birthday-months">
+            ${monthNames.map((month, index) => {
+              const students = studentsByMonth[index] || [];
+              if (students.length === 0) return '';
+              
+              return `
+                <div class="birthday-month-card">
+                  <div class="birthday-month-header">
+                    <div class="birthday-month-icon">${monthEmojis[index]}</div>
+                    <h3 class="birthday-month-name">${month}</h3>
+                    <span class="birthday-count-badge">${students.length}</span>
+                  </div>
+                  <div class="birthday-list">
+                    ${students.sort((a, b) => a.day - b.day).map(student => `
+                      <div class="birthday-item">
+                        <div class="birthday-item-avatar">${student.name[0].toUpperCase()}</div>
+                        <div class="birthday-item-info">
+                          <div class="birthday-item-name">${student.name}</div>
+                          <div class="birthday-item-date">${month} ${student.day}</div>
+                        </div>
+                        <div class="birthday-item-cake">🎂</div>
+                      </div>
+                    `).join('')}
+                  </div>
+                </div>
+              `;
+            }).join('')}
+          </div>
+        `;
+      });
+    }
+
+    function loadAnnouncements() {
+      db.ref('announcements').on('value', (snapshot) => {
+        const container = document.getElementById('announcementsContainer');
+        const items = [];
+        
+        snapshot.forEach((child) => {
+          items.push({ id: child.key, ...child.val() });
+        });
+        
+        if (items.length === 0) {
+          container.innerHTML = '<div class="empty-state"><div class="empty-state-icon">📢</div><p>No announcements yet.</p></div>';
+          return;
+        }
+        
+        container.innerHTML = items.map(item => `
+          <div class="card">
+            <div class="card-header">
+              <div class="card-icon">📢</div>
+              <h3 class="card-title">${item.title}</h3>
+              <div class="card-meta">
+                <span class="card-meta-icon">📅</span>
+                ${new Date(item.timestamp || Date.now()).toLocaleDateString()}
+              </div>
+            </div>
+            <div class="card-body">
+              <p class="card-content">${item.description}</p>
+            </div>
+          </div>
+        `).join('');
+      });
+    }
+
+    function loadAssignments() {
+      db.ref('assignments').on('value', (snapshot) => {
+        const container = document.getElementById('assignmentsContainer');
+        const items = [];
+        
+        snapshot.forEach((child) => {
+          items.push({ id: child.key, ...child.val() });
+        });
+        
+        if (items.length === 0) {
+          container.innerHTML = '<div class="empty-state"><div class="empty-state-icon">📚</div><p>No assignments yet.</p></div>';
+          return;
+        }
+        
+        container.innerHTML = items.map(item => `
+          <div class="card">
+            <div class="card-header">
+              <div class="card-icon">📚</div>
+              <h3 class="card-title">${item.title}</h3>
+              <div class="card-meta">
+                <span class="card-meta-icon">📅</span>
+                Due: ${new Date(item.dueDate).toLocaleDateString()}
+              </div>
+            </div>
+            <div class="card-body">
+              <p class="card-content">${item.description}</p>
+            </div>
+          </div>
+        `).join('');
+      });
+    }
+
+    function loadEvents() {
+      db.ref('events').on('value', (snapshot) => {
+        const container = document.getElementById('eventsContainer');
+        allData.events = [];
+        
+        snapshot.forEach((child) => {
+          allData.events.push({ id: child.key, ...child.val() });
+        });
+        
+        updateStatsCounter('statsEvents', allData.events.length);
+        
+        if (allData.events.length === 0) {
+          container.innerHTML = '<div class="empty-state"><div class="empty-state-icon">📅</div><p>No events scheduled yet.</p></div>';
+          return;
+        }
+        
+        container.innerHTML = allData.events.map(item => `
+          <div class="card">
+            <div class="card-header">
+              <div class="card-icon">📅</div>
+              <h3 class="card-title">${item.title}</h3>
+              <div class="card-meta">
+                <span class="card-meta-icon">📍</span>
+                ${item.location}
+              </div>
+              <div class="card-meta">
+                <span class="card-meta-icon">📅</span>
+                ${new Date(item.date).toLocaleDateString()}
+              </div>
+            </div>
+            <div class="card-body">
+              <p class="card-content">${item.description}</p>
+            </div>
+          </div>
+        `).join('');
+      });
+    }
+
+    function loadResearch() {
+      db.ref('research').on('value', (snapshot) => {
+        const container = document.getElementById('researchContainer');
+        allData.research = [];
+        
+        snapshot.forEach((child) => {
+          allData.research.push({ id: child.key, ...child.val() });
+        });
+        
+        updateStatsCounter('statsResearch', allData.research.length);
+        
+        if (allData.research.length === 0) {
+          container.innerHTML = '<div class="empty-state"><div class="empty-state-icon">🔬</div><p>No research posts yet.</p></div>';
+          return;
+        }
+        
+        container.innerHTML = allData.research.map(item => `
+          <div class="card">
+            <div class="card-header">
+              <div class="card-icon">🔬</div>
+              <h3 class="card-title">${item.title}</h3>
+            </div>
+            <div class="card-body">
+              <p class="card-content">${item.text}</p>
+            </div>
+            ${item.link ? `
+              <div class="card-footer">
+                <a href="${item.link}" target="_blank" rel="noopener noreferrer" class="card-link">
+                  Read More →
+                </a>
+              </div>
+            ` : ''}
+          </div>
+        `).join('');
+      });
+    }
+
+    function loadStudents() {
+      db.ref('students').on('value', (snapshot) => {
+        const container = document.getElementById('studentsContainer');
+        allData.students = [];
+        
+        snapshot.forEach((child) => {
+          allData.students.push({ id: child.key, ...child.val() });
+        });
+        
+        updateStatsCounter('statsStudents', allData.students.length);
+        renderStudents(allData.students);
+      });
+    }
+
+    function renderStudents(students) {
+      const container = document.getElementById('studentsContainer');
+      
+      if (students.length === 0) {
+        container.innerHTML = '<div class="empty-state"><div class="empty-state-icon">👥</div><p>No students added yet.</p></div>';
+        return;
+      }
+      
+      container.innerHTML = students.map(student => `
+        <div class="card student-card">
+          <div class="student-avatar">${student.name[0].toUpperCase()}</div>
+          <h3 class="student-name">${student.name}</h3>
+          <p class="student-role">${student.role}</p>
+          ${student.birthday ? `<div class="student-birthday">🎂 ${new Date(student.birthday).toLocaleDateString('en-US', { month: 'long', day: 'numeric' })}</div>` : ''}
+          ${student.motto ? `<div class="student-motto">"${student.motto}"</div>` : ''}
+          ${student.bio ? `<div class="student-bio">${student.bio}</div>` : ''}
+          ${student.interests ? `
+            <div class="student-interests">
+              ${student.interests.split(',').map(interest => `<span class="interest-tag">${interest.trim()}</span>`).join('')}
+            </div>
+          ` : ''}
+          ${student.favoriteSubject ? `<div class="student-fav-subject">💚 Favorite Subject: ${student.favoriteSubject}</div>` : ''}
+        </div>
+      `).join('');
+    }
+
+    // Student Search
+    document.getElementById('studentSearch').addEventListener('input', (e) => {
+      const query = e.target.value.toLowerCase();
+      const clearBtn = document.getElementById('clearSearch');
+      
+      clearBtn.style.display = query ? 'flex' : 'none';
+      
+      if (!query) {
+        renderStudents(allData.students);
+        return;
+      }
+      
+      const filtered = allData.students.filter(student => 
+        student.name.toLowerCase().includes(query) || 
+        student.role.toLowerCase().includes(query)
+      );
+      
+      renderStudents(filtered);
+    });
+
+    document.getElementById('clearSearch').addEventListener('click', () => {
+      document.getElementById('studentSearch').value = '';
+      document.getElementById('clearSearch').style.display = 'none';
+      renderStudents(allData.students);
+    });
+
+    function updateStatsCounter(id, value) {
+      const el = document.getElementById(id);
+      if (el) {
+        const start = parseInt(el.textContent) || 0;
+        const duration = 1000;
+        const increment = (value - start) / (duration / 16);
+        let current = start;
+        
+        const animate = () => {
+          current += increment;
+          if ((increment > 0 && current >= value) || (increment < 0 && current <= value)) {
+            el.textContent = value;
+          } else {
+            el.textContent = Math.floor(current);
+            requestAnimationFrame(animate);
+          }
+        };
+        
+        animate();
+      }
+    }
+
+    // Weather Widget
+    async function loadWeather() {
+      const container = document.getElementById('weatherWidget');
+      
+      try {
+        if (!navigator.geolocation) {
+          throw new Error('Geolocation not supported');
+        }
+        
+        const position = await new Promise((resolve, reject) => {
+          navigator.geolocation.getCurrentPosition(resolve, reject);
+        });
+        
+        const { latitude, longitude } = position.coords;
+        const API_KEY = '6d055e39ee237af35ca066f35474e9df';
+        const response = await fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${API_KEY}&units=metric`);
+        
+        if (!response.ok) throw new Error('Weather data unavailable');
+        
+        const data = await response.json();
+        
+        const weatherIcons = {
+          'Clear': '☀️',
+          'Clouds': '☁️',
+          'Rain': '🌧️',
+          'Drizzle': '🌦️',
+          'Thunderstorm': '⛈️',
+          'Snow': '❄️',
+          'Mist': '🌫️',
+          'Fog': '🌫️'
+        };
+        
+        const icon = weatherIcons[data.weather[0].main] || '🌤️';
+        
+        container.innerHTML = `
+          <div class="weather-icon-display">${icon}</div>
+          <div class="weather-temp">${Math.round(data.main.temp)}°C</div>
+          <div class="weather-description">${data.weather[0].description}</div>
+          <div class="weather-location">
+            <span>📍</span>
+            <span>${data.name}</span>
+          </div>
+          <div class="weather-details">
+            <div class="weather-detail-item">
+              <div class="weather-detail-icon">💧</div>
+              <div class="weather-detail-label">Humidity</div>
+              <div class="weather-detail-value">${data.main.humidity}%</div>
+            </div>
+            <div class="weather-detail-item">
+              <div class="weather-detail-icon">💨</div>
+              <div class="weather-detail-label">Wind</div>
+              <div class="weather-detail-value">${Math.round(data.wind.speed * 3.6)} km/h</div>
+            </div>
+            <div class="weather-detail-item">
+              <div class="weather-detail-icon">🌡️</div>
+              <div class="weather-detail-label">Feels Like</div>
+              <div class="weather-detail-value">${Math.round(data.main.feels_like)}°C</div>
+            </div>
+          </div>
+        `;
+      } catch (error) {
+        container.innerHTML = `
+          <div class="weather-error">
+            <div style="font-size: 48px; margin-bottom: 16px;">🌤️</div>
+            <p>Unable to load weather data</p>
+            <p style="font-size: 14px; margin-top: 8px; opacity: 0.7;">Please enable location access</p>
+          </div>
+        `;
+      }
+    }
+
+    // Contact Form
+    document.getElementById('contactForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      
+      const name = document.getElementById('contactName').value;
+      const email = document.getElementById('contactEmail').value;
+      const concern = document.getElementById('contactConcern').value;
+      
+      if (!name || !email || !concern) {
+        showToast('Please fill in all fields', true);
+        return;
+      }
+      
+      try {
+        await db.ref('contacts').push({
+          name: name,
+          email: email,
+          concern: concern,
+          timestamp: Date.now()
+        });
+        
+        document.getElementById('contactForm').reset();
+        showToast('Message sent successfully!');
+      } catch (error) {
+        showToast(error.message, true);
+      }
+    });
+
+    // Admin Functions
+    function loadAdminData() {
+      loadAdminImages();
+      loadAdminTalents();
+      loadAdminForum();
+      loadAdminAnnouncements();
+      loadAdminAssignments();
+      loadAdminEvents();
+      loadAdminResearch();
+      loadAdminStudents();
+      loadAdminContacts();
+    }
+
+    function loadAdminImages() {
+      db.ref('gallery').on('value', (snapshot) => {
+        const list = document.getElementById('imagesList');
+        const images = [];
+        
+        snapshot.forEach((child) => {
+          images.push({ id: child.key, ...child.val() });
+        });
+        
+        if (images.length === 0) {
+          list.innerHTML = '<div style="text-align: center; padding: 40px; color: #888;">No images yet</div>';
+          return;
+        }
+        
+        list.innerHTML = images.map(img => `
+          <div class="admin-item">
+            <div class="admin-item-content">
+              <div class="admin-item-title">${img.path}</div>
+            </div>
+            <button class="btn btn-danger btn-small" onclick="deleteItem('gallery', '${img.id}')">Delete</button>
+          </div>
+        `).join('');
+      });
+    }
+
+    function loadAdminTalents() {
+      db.ref('talents').on('value', (snapshot) => {
+        const list = document.getElementById('talentsList');
+        const talents = [];
+        
+        snapshot.forEach((child) => {
+          talents.push({ id: child.key, ...child.val() });
+        });
+        
+        if (talents.length === 0) {
+          list.innerHTML = '<div style="text-align: center; padding: 40px; color: #888;">No talents yet</div>';
+          return;
+        }
+        
+        list.innerHTML = talents.map(talent => `
+          <div class="admin-item">
+            <div class="admin-item-content">
+              <div class="admin-item-title">${talent.studentName} - ${talent.subject}</div>
+              <div class="admin-item-meta">${talent.imagePath}</div>
+              <div class="admin-item-desc">${talent.description || 'No description'}</div>
+            </div>
+            <button class="btn btn-danger btn-small" onclick="deleteItem('talents', '${talent.id}')">Delete</button>
+          </div>
+        `).join('');
+      });
+    }
+
+    function loadAdminForum() {
+      db.ref('forum').on('value', (snapshot) => {
+        const list = document.getElementById('forumList');
+        const questions = [];
+        
+        snapshot.forEach((child) => {
+          questions.push({ id: child.key, ...child.val() });
+        });
+        
+        if (questions.length === 0) {
+          list.innerHTML = '<div style="text-align: center; padding: 40px; color: #888;">No questions yet</div>';
+          return;
+        }
+        
+        list.innerHTML = questions.map(q => `
+          <div class="admin-item">
+            <div class="admin-item-content">
+              <div class="admin-item-title">${q.title}</div>
+              <div class="admin-item-meta">By ${q.userName} • ${q.answers ? Object.keys(q.answers).length : 0} answers</div>
+              <div class="admin-item-desc">${q.body.substring(0, 100)}...</div>
+            </div>
+            <button class="btn btn-danger btn-small" onclick="deleteItem('forum', '${q.id}')">Delete</button>
+          </div>
+        `).join('');
+      });
+    }
+
+    function loadAdminAnnouncements() {
+      db.ref('announcements').on('value', (snapshot) => {
+        const list = document.getElementById('announcementsList');
+        const items = [];
+        
+        snapshot.forEach((child) => {
+          items.push({ id: child.key, ...child.val() });
+        });
+        
+        if (items.length === 0) {
+          list.innerHTML = '<div style="text-align: center; padding: 40px; color: #888;">No announcements yet</div>';
+          return;
+        }
+        
+        list.innerHTML = items.map(item => `
+          <div class="admin-item">
+            <div class="admin-item-content">
+              <div class="admin-item-title">${item.title}</div>
+              <div class="admin-item-desc">${item.description}</div>
+            </div>
+            <button class="btn btn-danger btn-small" onclick="deleteItem('announcements', '${item.id}')">Delete</button>
+          </div>
+        `).join('');
+      });
+    }
+
+    function loadAdminAssignments() {
+      db.ref('assignments').on('value', (snapshot) => {
+        const list = document.getElementById('assignmentsList');
+        const items = [];
+        
+        snapshot.forEach((child) => {
+          items.push({ id: child.key, ...child.val() });
+        });
+        
+        if (items.length === 0) {
+          list.innerHTML = '<div style="text-align: center; padding: 40px; color: #888;">No assignments yet</div>';
+          return;
+        }
+        
+        list.innerHTML = items.map(item => `
+          <div class="admin-item">
+            <div class="admin-item-content">
+              <div class="admin-item-title">${item.title}</div>
+              <div class="admin-item-meta">Due: ${new Date(item.dueDate).toLocaleDateString()}</div>
+              <div class="admin-item-desc">${item.description}</div>
+            </div>
+            <button class="btn btn-danger btn-small" onclick="deleteItem('assignments', '${item.id}')">Delete</button>
+          </div>
+        `).join('');
+      });
+    }
+
+    function loadAdminEvents() {
+      db.ref('events').on('value', (snapshot) => {
+        const list = document.getElementById('eventsList');
+        const items = [];
+        
+        snapshot.forEach((child) => {
+          items.push({ id: child.key, ...child.val() });
+        });
+        
+        if (items.length === 0) {
+          list.innerHTML = '<div style="text-align: center; padding: 40px; color: #888;">No events yet</div>';
+          return;
+        }
+        
+        list.innerHTML = items.map(item => `
+          <div class="admin-item">
+            <div class="admin-item-content">
+              <div class="admin-item-title">${item.title}</div>
+              <div class="admin-item-meta">${new Date(item.date).toLocaleDateString()} • ${item.location}</div>
+              <div class="admin-item-desc">${item.description}</div>
+            </div>
+            <button class="btn btn-danger btn-small" onclick="deleteItem('events', '${item.id}')">Delete</button>
+          </div>
+        `).join('');
+      });
+    }
+
+    function loadAdminResearch() {
+      db.ref('research').on('value', (snapshot) => {
+        const list = document.getElementById('researchList');
+        const items = [];
+        
+        snapshot.forEach((child) => {
+          items.push({ id: child.key, ...child.val() });
+        });
+        
+        if (items.length === 0) {
+          list.innerHTML = '<div style="text-align: center; padding: 40px; color: #888;">No research posts yet</div>';
+          return;
+        }
+        
+        list.innerHTML = items.map(item => `
+          <div class="admin-item">
+            <div class="admin-item-content">
+              <div class="admin-item-title">${item.title}</div>
+              <div class="admin-item-desc">${item.text}</div>
+              ${item.link ? `<div class="admin-item-meta">🔗 ${item.link}</div>` : ''}
+            </div>
+            <button class="btn btn-danger btn-small" onclick="deleteItem('research', '${item.id}')">Delete</button>
+          </div>
+        `).join('');
+      });
+    }
+
+    function loadAdminStudents() {
+      db.ref('students').on('value', (snapshot) => {
+        const list = document.getElementById('studentsList');
+        const items = [];
+        
+        snapshot.forEach((child) => {
+          items.push({ id: child.key, ...child.val() });
+        });
+        
+        if (items.length === 0) {
+          list.innerHTML = '<div style="text-align: center; padding: 40px; color: #888;">No students yet</div>';
+          return;
+        }
+        
+        list.innerHTML = items.map(item => `
+          <div class="admin-item">
+            <div class="admin-item-content">
+              <div class="admin-item-title">${item.name}</div>
+              <div class="admin-item-meta">${item.role}${item.birthday ? ' • 🎂 ' + new Date(item.birthday).toLocaleDateString() : ''}</div>
+              ${item.motto ? `<div class="admin-item-desc">"${item.motto}"</div>` : ''}
+            </div>
+            <button class="btn btn-danger btn-small" onclick="deleteItem('students', '${item.id}')">Delete</button>
+          </div>
+        `).join('');
+      });
+    }
+
+    function loadAdminContacts() {
+      db.ref('contacts').on('value', (snapshot) => {
+        const list = document.getElementById('contactsList');
+        const items = [];
+        
+        snapshot.forEach((child) => {
+          items.push({ id: child.key, ...child.val() });
+        });
+        
+        if (items.length === 0) {
+          list.innerHTML = '<div style="text-align: center; padding: 40px; color: #888;">No messages yet</div>';
+          return;
+        }
+        
+        list.innerHTML = items.map(item => `
+          <div class="admin-item">
+            <div class="admin-item-content">
+              <div class="admin-item-title">${item.name}</div>
+              <div class="admin-item-meta">${item.email} • ${new Date(item.timestamp).toLocaleDateString()}</div>
+              <div class="admin-item-desc">${item.concern}</div>
+            </div>
+            <button class="btn btn-danger btn-small" onclick="deleteItem('contacts', '${item.id}')">Delete</button>
+          </div>
+        `).join('');
+      });
+    }
+
+    // Admin Add Handlers
+    document.getElementById('addImageBtn').addEventListener('click', async () => {
+      if (!isAdmin) return;
+      
+      const path = document.getElementById('imagePathInput').value.trim();
+      if (!path) {
+        showToast('Please enter an image path', true);
+        return;
+      }
+      
+      try {
+        await db.ref('gallery').push({ path: path });
+        document.getElementById('imagePathInput').value = '';
+        showToast('Image added!');
+      } catch (error) {
+        showToast(error.message, true);
+      }
+    });
+
+    document.getElementById('addTalentBtn').addEventListener('click', async () => {
+      if (!isAdmin) return;
+      
+      const studentName = document.getElementById('talentStudentName').value.trim();
+      const subject = document.getElementById('talentSubject').value;
+      const imagePath = document.getElementById('talentImagePath').value.trim();
+      const description = document.getElementById('talentDescription').value.trim();
+      
+      if (!studentName || !subject || !imagePath) {
+        showToast('Please fill in all required fields', true);
+        return;
+      }
+      
+      try {
+        await db.ref('talents').push({
+          studentName: studentName,
+          subject: subject,
+          imagePath: imagePath,
+          description: description
+        });
+        
+        document.getElementById('talentStudentName').value = '';
+        document.getElementById('talentSubject').value = '';
+        document.getElementById('talentImagePath').value = '';
+        document.getElementById('talentDescription').value = '';
+        showToast('Talent added!');
+      } catch (error) {
+        showToast(error.message, true);
+      }
+    });
+
+    document.getElementById('addAnnouncementBtn').addEventListener('click', async () => {
+      if (!isAdmin) return;
+      
+      const title = document.getElementById('announcementTitle').value.trim();
+      const description = document.getElementById('announcementDesc').value.trim();
+      
+      if (!title || !description) {
+        showToast('Please fill in all fields', true);
+        return;
+      }
+      
+      try {
+        await db.ref('announcements').push({
+          title: title,
+          description: description,
+          timestamp: Date.now()
+        });
+        
+        document.getElementById('announcementTitle').value = '';
+        document.getElementById('announcementDesc').value = '';
+        showToast('Announcement added!');
+      } catch (error) {
+        showToast(error.message, true);
+      }
+    });
+
+    document.getElementById('addAssignmentBtn').addEventListener('click', async () => {
+      if (!isAdmin) return;
+      
+      const title = document.getElementById('assignmentTitle').value.trim();
+      const description = document.getElementById('assignmentDesc').value.trim();
+      const dueDate = document.getElementById('assignmentDue').value;
+      
+      if (!title || !description || !dueDate) {
+        showToast('Please fill in all fields', true);
+        return;
+      }
+      
+      try {
+        await db.ref('assignments').push({
+          title: title,
+          description: description,
+          dueDate: dueDate,
+          timestamp: Date.now()
+        });
+        
+        document.getElementById('assignmentTitle').value = '';
+        document.getElementById('assignmentDesc').value = '';
+        document.getElementById('assignmentDue').value = '';
+        showToast('Assignment added!');
+      } catch (error) {
+        showToast(error.message, true);
+      }
+    });
+
+    document.getElementById('addEventBtn').addEventListener('click', async () => {
+      if (!isAdmin) return;
+      
+      const title = document.getElementById('eventTitle').value.trim();
+      const date = document.getElementById('eventDate').value;
+      const location = document.getElementById('eventLocation').value.trim();
+      const description = document.getElementById('eventDesc').value.trim();
+      
+      if (!title || !date || !location || !description) {
+        showToast('Please fill in all fields', true);
+        return;
+      }
+      
+      try {
+        await db.ref('events').push({
+          title: title,
+          date: date,
+          location: location,
+          description: description,
+          timestamp: Date.now()
+        });
+        
+        document.getElementById('eventTitle').value = '';
+        document.getElementById('eventDate').value = '';
+        document.getElementById('eventLocation').value = '';
+        document.getElementById('eventDesc').value = '';
+        showToast('Event added!');
+      } catch (error) {
+        showToast(error.message, true);
+      }
+    });
+
+    document.getElementById('addResearchBtn').addEventListener('click', async () => {
+      if (!isAdmin) return;
+      
+      const title = document.getElementById('researchTitle').value.trim();
+      const text = document.getElementById('researchText').value.trim();
+      const link = document.getElementById('researchLink').value.trim();
+      
+      if (!title || !text) {
+        showToast('Please fill in title and summary', true);
+        return;
+      }
+      
+      try {
+        await db.ref('research').push({
+          title: title,
+          text: text,
+          link: link,
+          timestamp: Date.now()
+        });
+        
+        document.getElementById('researchTitle').value = '';
+        document.getElementById('researchText').value = '';
+        document.getElementById('researchLink').value = '';
+        showToast('Research post added!');
+      } catch (error) {
+        showToast(error.message, true);
+      }
+    });
+
+    document.getElementById('addStudentBtn').addEventListener('click', async () => {
+      if (!isAdmin) return;
+      
+      const name = document.getElementById('studentName').value.trim();
+      const role = document.getElementById('studentRole').value.trim();
+      const birthday = document.getElementById('studentBirthday').value;
+      const motto = document.getElementById('studentMotto').value.trim();
+      const bio = document.getElementById('studentBio').value.trim();
+      const interests = document.getElementById('studentInterests').value.trim();
+      const favoriteSubject = document.getElementById('studentFavSubject').value;
+      
+      if (!name || !role) {
+        showToast('Please fill in name and role', true);
+        return;
+      }
+      
+      try {
+        await db.ref('students').push({
+          name: name,
+          role: role,
+          birthday: birthday || null,
+          motto: motto || null,
+          bio: bio || null,
+          interests: interests || null,
+          favoriteSubject: favoriteSubject || null,
+          timestamp: Date.now()
+        });
+        
+        document.getElementById('studentName').value = '';
+        document.getElementById('studentRole').value = '';
+        document.getElementById('studentBirthday').value = '';
+        document.getElementById('studentMotto').value = '';
+        document.getElementById('studentBio').value = '';
+        document.getElementById('studentInterests').value = '';
+        document.getElementById('studentFavSubject').value = '';
+        showToast('Student added!');
+      } catch (error) {
+        showToast(error.message, true);
+      }
+    });
+
+    window.deleteItem = async function(collection, id) {
+      if (!isAdmin) return;
+      
+      if (!confirm('Are you sure you want to delete this item?')) return;
+      
+      try {
+        await db.ref(`${collection}/${id}`).remove();
+        showToast('Item deleted!');
+      } catch (error) {
+        showToast(error.message, true);
+      }
+    };
 
     // Scroll Animations
     const observerOptions = {
@@ -2089,976 +4501,25 @@
       });
     }, observerOptions);
 
-    document.querySelectorAll('.fade-in-section').forEach(el => observer.observe(el));
-
-    // Auth State Management
-    auth.onAuthStateChanged(async (user) => {
-      currentUser = user;
-      if (user) {
-        isAdmin = await checkAdmin(user.uid);
-        updateNavUI();
-      } else {
-        isAdmin = false;
-        updateNavUI();
-      }
+    document.querySelectorAll('.fade-in-section').forEach(el => {
+      observer.observe(el);
     });
 
-    function updateNavUI() {
-      const navButtons = document.getElementById('navButtons');
-      
-      if (currentUser) {
-        const initial = currentUser.email.charAt(0).toUpperCase();
-        navButtons.innerHTML = `
-          <div class="user-avatar" id="userAvatar" title="${currentUser.email}">${initial}</div>
-        `;
-        document.getElementById('userAvatar').addEventListener('click', () => {
-          if (isAdmin) {
-            openModal('admin');
-          } else {
-            showToast('You are logged in as a regular user');
-          }
-        });
-      } else {
-        navButtons.innerHTML = `
-          <button class="btn btn-outline" id="loginNavBtn">Login</button>
-          <button class="btn btn-primary" id="signupNavBtn">Sign Up</button>
-        `;
-        document.getElementById('loginNavBtn').addEventListener('click', () => openModal('login'));
-        document.getElementById('signupNavBtn').addEventListener('click', () => openModal('signup'));
-      }
-    }
-
-    // Modal Management
-    function openModal(type) {
-      const modal = document.getElementById('mainModal');
-      const authSection = document.getElementById('authSection');
-      const adminContent = document.getElementById('adminContent');
-      const modalTitle = document.getElementById('modalTitle');
-
-      if (type === 'admin' && isAdmin) {
-        authSection.style.display = 'none';
-        adminContent.style.display = 'block';
-        modalTitle.textContent = 'Admin Panel';
-      } else if (type === 'login') {
-        authSection.style.display = 'block';
-        adminContent.style.display = 'none';
-        modalTitle.textContent = 'Login';
-        switchAuthTab('login');
-      } else if (type === 'signup') {
-        authSection.style.display = 'block';
-        adminContent.style.display = 'none';
-        modalTitle.textContent = 'Sign Up';
-        switchAuthTab('signup');
-      }
-
-      modal.classList.add('active');
-    }
-
-    function closeModal() {
-      document.getElementById('mainModal').classList.remove('active');
-    }
-
-    document.getElementById('closeModal').addEventListener('click', closeModal);
-    document.getElementById('mainModal').addEventListener('click', (e) => {
-      if (e.target.id === 'mainModal') closeModal();
-    });
-
-    // Auth Tab Switching
-    function switchAuthTab(tab) {
-      document.querySelectorAll('.auth-tab').forEach(t => t.classList.remove('active'));
-      document.querySelectorAll('.auth-content').forEach(c => c.style.display = 'none');
-      
-      document.querySelector(`[data-auth-tab="${tab}"]`).classList.add('active');
-      document.getElementById(`auth-${tab}`).style.display = 'block';
-    }
-
-    document.querySelectorAll('.auth-tab').forEach(tab => {
-      tab.addEventListener('click', () => switchAuthTab(tab.dataset.authTab));
-    });
-
-    // Login
-    document.getElementById('loginBtn').addEventListener('click', async () => {
-      const email = document.getElementById('loginEmail').value.trim();
-      const password = document.getElementById('loginPassword').value;
-
-      if (!email || !password) {
-        showToast('Please enter email and password', true);
-        return;
-      }
-
-      try {
-        await auth.signInWithEmailAndPassword(email, password);
-        showToast('Login successful!');
-        closeModal();
-      } catch (error) {
-        showToast(error.message, true);
-      }
-    });
-
-    // Google Login
-    document.getElementById('googleLoginBtn').addEventListener('click', async () => {
-      try {
-        const provider = new firebase.auth.GoogleAuthProvider();
-        await auth.signInWithPopup(provider);
-        showToast('Login successful with Google!');
-        closeModal();
-      } catch (error) {
-        if (error.code === 'auth/popup-closed-by-user') {
-          showToast('Google sign-in was cancelled', true);
-        } else {
-          showToast(error.message, true);
-        }
-      }
-    });
-
-    // Signup
-    document.getElementById('signupBtn').addEventListener('click', async () => {
-      const email = document.getElementById('signupEmail').value.trim();
-      const password = document.getElementById('signupPassword').value;
-      const confirm = document.getElementById('signupConfirm').value;
-
-      if (!email || !password || !confirm) {
-        showToast('Please fill in all fields', true);
-        return;
-      }
-
-      if (password !== confirm) {
-        showToast('Passwords do not match', true);
-        return;
-      }
-
-      if (password.length < 6) {
-        showToast('Password must be at least 6 characters', true);
-        return;
-      }
-
-      try {
-        await auth.createUserWithEmailAndPassword(email, password);
-        showToast('Account created successfully!');
-        closeModal();
-      } catch (error) {
-        showToast(error.message, true);
-      }
-    });
-
-    // Logout
-    document.getElementById('logoutBtn').addEventListener('click', async () => {
-      await auth.signOut();
-      closeModal();
-      showToast('Logged out successfully');
-    });
-
-    // Admin Tab Switching
-    document.querySelectorAll('.admin-tab').forEach(tab => {
-      tab.addEventListener('click', () => {
-        document.querySelectorAll('.admin-tab').forEach(t => t.classList.remove('active'));
-        document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
-        tab.classList.add('active');
-        document.getElementById(`tab-${tab.dataset.tab}`).classList.add('active');
-      });
-    });
-
-    // Image Carousel
-    function buildImageUrl(path) {
-      const username = config.github_username || defaultConfig.github_username;
-      const repo = config.github_repo || defaultConfig.github_repo;
-      return `https://raw.githubusercontent.com/${username}/${repo}/main/${path}`;
-    }
-
-    function renderCarousel(images) {
-      const container = document.getElementById('carouselContainer');
-      carouselImages = images;
-
-      if (images.length === 0) {
-        container.innerHTML = `
-          <div class="empty-state">
-            <div class="empty-state-icon">🖼️</div>
-            <div>No images yet.</div>
-          </div>
-        `;
-        return;
-      }
-
-      const track = document.createElement('div');
-      track.className = 'carousel-track';
-      track.id = 'carouselTrack';
-
-      images.forEach((img, index) => {
-        const slide = document.createElement('div');
-        slide.className = 'carousel-slide';
-        const imgEl = document.createElement('img');
-        imgEl.src = buildImageUrl(img.path);
-        imgEl.alt = `Gallery image ${index + 1}`;
-        imgEl.onerror = function() {
-          this.src = '';
-          this.alt = 'Image failed to load';
-          this.style.display = 'none';
-        };
-        slide.appendChild(imgEl);
-        
-        track.appendChild(slide);
-      });
-
-      container.innerHTML = '';
-      container.appendChild(track);
-
-      if (images.length > 1) {
-        const prevBtn = document.createElement('button');
-        prevBtn.className = 'carousel-nav prev';
-        prevBtn.innerHTML = '‹';
-        prevBtn.addEventListener('click', () => moveCarousel(-1));
-
-        const nextBtn = document.createElement('button');
-        nextBtn.className = 'carousel-nav next';
-        nextBtn.innerHTML = '›';
-        nextBtn.addEventListener('click', () => moveCarousel(1));
-
-        const indicators = document.createElement('div');
-        indicators.className = 'carousel-indicators';
-        images.forEach((_, i) => {
-          const dot = document.createElement('button');
-          dot.className = `indicator ${i === 0 ? 'active' : ''}`;
-          dot.addEventListener('click', () => goToSlide(i));
-          indicators.appendChild(dot);
-        });
-
-        container.appendChild(prevBtn);
-        container.appendChild(nextBtn);
-        container.appendChild(indicators);
-
-        startCarouselAutoplay();
-      }
-    }
-
-    function moveCarousel(direction) {
-      carouselIndex = (carouselIndex + direction + carouselImages.length) % carouselImages.length;
-      updateCarouselPosition();
-    }
-
-    function goToSlide(index) {
-      carouselIndex = index;
-      updateCarouselPosition();
-    }
-
-    function updateCarouselPosition() {
-      const track = document.getElementById('carouselTrack');
-      if (track) {
-        track.style.transform = `translateX(-${carouselIndex * 100}%)`;
-        document.querySelectorAll('.indicator').forEach((dot, i) => {
-          dot.classList.toggle('active', i === carouselIndex);
-        });
-      }
-    }
-
-    function startCarouselAutoplay() {
-      if (carouselInterval) clearInterval(carouselInterval);
-      carouselInterval = setInterval(() => {
-        moveCarousel(1);
-      }, 5000);
-    }
-
-    // Firebase Listeners - Images
-    db.ref('scrollerImages').on('value', (snapshot) => {
-      const data = snapshot.val();
-      const images = data ? Object.keys(data).map(key => ({ id: key, ...data[key] })) : [];
-      renderCarousel(images);
-      renderAdminImages(images);
-    });
-
-    function renderAdminImages(images) {
-      const list = document.getElementById('imagesList');
-      if (images.length === 0) {
-        list.innerHTML = '<div class="empty-state"><div class="empty-state-icon">🖼️</div><div>No images yet.</div></div>';
-        return;
-      }
-
-      list.innerHTML = images.map(img => `
-        <div class="admin-item">
-          <div class="admin-item-content">
-            <div class="admin-item-title">${img.path}</div>
-          </div>
-          <button class="btn btn-danger btn-small" onclick="deleteImage('${img.id}')">Delete</button>
-        </div>
-      `).join('');
-    }
-
-    document.getElementById('addImageBtn').addEventListener('click', async () => {
-      if (!isAdmin) return;
-      const path = document.getElementById('imagePathInput').value.trim();
-      if (!path) {
-        showToast('Please enter an image path', true);
-        return;
-      }
-
-      await db.ref('scrollerImages').push({ path });
-      document.getElementById('imagePathInput').value = '';
-      showToast('Image added successfully!');
-    });
-
-    window.deleteImage = async (id) => {
-      if (!isAdmin) return;
-      await db.ref(`scrollerImages/${id}`).remove();
-      showToast('Image deleted successfully!');
-    };
-
-    // Announcements
-    db.ref('announcements').on('value', (snapshot) => {
-      const data = snapshot.val();
-      const announcements = data ? Object.keys(data).map(key => ({ id: key, ...data[key] })) : [];
-      allData.announcements = announcements;
-      renderAnnouncements(announcements);
-      renderAdminAnnouncements(announcements);
-    });
-
-    function renderAnnouncements(announcements) {
-      const container = document.getElementById('announcementsContainer');
-      if (announcements.length === 0) {
-        container.innerHTML = '<div class="empty-state"><div class="empty-state-icon">📢</div><div>No announcements yet.</div></div>';
-        return;
-      }
-
-      container.innerHTML = announcements.map(ann => `
-        <div class="card">
-          <div class="card-header" style="padding: 24px;">
-            <div style="display: flex; align-items: center; gap: 16px; margin-bottom: 12px;">
-              <div class="card-icon" style="margin: 0;">📢</div>
-              <div>
-                <div class="card-title" style="margin: 0;">${ann.title}</div>
-                <div class="card-meta" style="margin: 4px 0 0 0;">
-                  <span class="card-meta-icon">📅</span>
-                  ${new Date(ann.datePosted).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}
-                </div>
-              </div>
-            </div>
-            <div class="card-content" style="margin: 0; padding-top: 12px; border-top: 1px solid #f0f0f0;">${ann.description}</div>
-          </div>
-        </div>
-      `).join('');
-    }
-
-    function renderAdminAnnouncements(announcements) {
-      const list = document.getElementById('announcementsList');
-      if (announcements.length === 0) {
-        list.innerHTML = '<div class="empty-state"><div class="empty-state-icon">📢</div><div>No announcements yet.</div></div>';
-        return;
-      }
-
-      list.innerHTML = announcements.map(ann => `
-        <div class="admin-item">
-          <div class="admin-item-content">
-            <div class="admin-item-title">${ann.title}</div>
-            <div class="admin-item-meta">📅 ${new Date(ann.datePosted).toLocaleDateString()}</div>
-            <div class="admin-item-desc">${ann.description}</div>
-          </div>
-          <button class="btn btn-danger btn-small" onclick="deleteAnnouncement('${ann.id}')">Delete</button>
-        </div>
-      `).join('');
-    }
-
-    document.getElementById('addAnnouncementBtn').addEventListener('click', async () => {
-      if (!isAdmin) return;
-      const title = document.getElementById('announcementTitle').value.trim();
-      const description = document.getElementById('announcementDesc').value.trim();
-
-      if (!title || !description) {
-        showToast('Please fill in all fields', true);
-        return;
-      }
-
-      await db.ref('announcements').push({
-        title,
-        description,
-        datePosted: new Date().toISOString()
-      });
-
-      document.getElementById('announcementTitle').value = '';
-      document.getElementById('announcementDesc').value = '';
-      showToast('Announcement added successfully!');
-    });
-
-    window.deleteAnnouncement = async (id) => {
-      if (!isAdmin) return;
-      await db.ref(`announcements/${id}`).remove();
-      showToast('Announcement deleted successfully!');
-    };
-
-    // Assignments
-    db.ref('assignments').on('value', (snapshot) => {
-      const data = snapshot.val();
-      const assignments = data ? Object.keys(data).map(key => ({ id: key, ...data[key] })) : [];
-      allData.assignments = assignments;
-      renderAssignments(assignments);
-      renderAdminAssignments(assignments);
-    });
-
-    function renderAssignments(assignments) {
-      const container = document.getElementById('assignmentsContainer');
-      if (assignments.length === 0) {
-        container.innerHTML = '<div class="empty-state"><div class="empty-state-icon">📚</div><div>No assignments yet.</div></div>';
-        return;
-      }
-
-      container.innerHTML = assignments.map(asn => `
-        <div class="card">
-          <div class="card-header" style="padding: 24px;">
-            <div style="display: flex; align-items: center; gap: 16px; margin-bottom: 12px;">
-              <div class="card-icon" style="margin: 0;">📚</div>
-              <div>
-                <div class="card-title" style="margin: 0;">${asn.title}</div>
-                <div class="card-meta" style="margin: 4px 0 0 0;">
-                  <span class="card-meta-icon">⏰</span>
-                  Due: ${new Date(asn.dueDate).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}
-                </div>
-              </div>
-            </div>
-            <div class="card-content" style="margin: 0; padding-top: 12px; border-top: 1px solid #f0f0f0;">${asn.description}</div>
-          </div>
-        </div>
-      `).join('');
-    }
-
-    function renderAdminAssignments(assignments) {
-      const list = document.getElementById('assignmentsList');
-      if (assignments.length === 0) {
-        list.innerHTML = '<div class="empty-state"><div class="empty-state-icon">📚</div><div>No assignments yet.</div></div>';
-        return;
-      }
-
-      list.innerHTML = assignments.map(asn => `
-        <div class="admin-item">
-          <div class="admin-item-content">
-            <div class="admin-item-title">${asn.title}</div>
-            <div class="admin-item-meta">⏰ Due: ${new Date(asn.dueDate).toLocaleDateString()}</div>
-            <div class="admin-item-desc">${asn.description}</div>
-          </div>
-          <button class="btn btn-danger btn-small" onclick="deleteAssignment('${asn.id}')">Delete</button>
-        </div>
-      `).join('');
-    }
-
-    document.getElementById('addAssignmentBtn').addEventListener('click', async () => {
-      if (!isAdmin) return;
-      const title = document.getElementById('assignmentTitle').value.trim();
-      const description = document.getElementById('assignmentDesc').value.trim();
-      const dueDate = document.getElementById('assignmentDue').value;
-
-      if (!title || !description || !dueDate) {
-        showToast('Please fill in all fields', true);
-        return;
-      }
-
-      await db.ref('assignments').push({
-        title,
-        description,
-        dueDate: new Date(dueDate).toISOString()
-      });
-
-      document.getElementById('assignmentTitle').value = '';
-      document.getElementById('assignmentDesc').value = '';
-      document.getElementById('assignmentDue').value = '';
-      showToast('Assignment added successfully!');
-    });
-
-    window.deleteAssignment = async (id) => {
-      if (!isAdmin) return;
-      await db.ref(`assignments/${id}`).remove();
-      showToast('Assignment deleted successfully!');
-    };
-
-    // Events
-    db.ref('events').on('value', (snapshot) => {
-      const data = snapshot.val();
-      const events = data ? Object.keys(data).map(key => ({ id: key, ...data[key] })) : [];
-      allData.events = events;
-      renderEvents(events);
-      renderAdminEvents(events);
-      updateStats();
-    });
-
-    function renderEvents(events) {
-      const container = document.getElementById('eventsContainer');
-      if (events.length === 0) {
-        container.innerHTML = '<div class="empty-state"><div class="empty-state-icon">📅</div><div>No events yet.</div></div>';
-        return;
-      }
-
-      container.innerHTML = events.map(evt => `
-        <div class="card">
-          <div class="card-header" style="padding: 24px;">
-            <div style="display: flex; align-items: center; gap: 16px; margin-bottom: 12px;">
-              <div class="card-icon" style="margin: 0;">📅</div>
-              <div>
-                <div class="card-title" style="margin: 0;">${evt.title}</div>
-                <div class="card-meta" style="margin: 4px 0 0 0;">
-                  <span class="card-meta-icon">📍</span>
-                  ${evt.location}
-                </div>
-                <div class="card-meta" style="margin: 4px 0 0 0;">
-                  <span class="card-meta-icon">📅</span>
-                  ${new Date(evt.date).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}
-                </div>
-              </div>
-            </div>
-            <div class="card-content" style="margin: 0; padding-top: 12px; border-top: 1px solid #f0f0f0;">${evt.description}</div>
-          </div>
-        </div>
-      `).join('');
-    }
-
-    function renderAdminEvents(events) {
-      const list = document.getElementById('eventsList');
-      if (events.length === 0) {
-        list.innerHTML = '<div class="empty-state"><div class="empty-state-icon">����</div><div>No events yet.</div></div>';
-        return;
-      }
-
-      list.innerHTML = events.map(evt => `
-        <div class="admin-item">
-          <div class="admin-item-content">
-            <div class="admin-item-title">${evt.title}</div>
-            <div class="admin-item-meta">📅 ${new Date(evt.date).toLocaleDateString()} • 📍 ${evt.location}</div>
-            <div class="admin-item-desc">${evt.description}</div>
-          </div>
-          <button class="btn btn-danger btn-small" onclick="deleteEvent('${evt.id}')">Delete</button>
-        </div>
-      `).join('');
-    }
-
-    document.getElementById('addEventBtn').addEventListener('click', async () => {
-      if (!isAdmin) return;
-      const title = document.getElementById('eventTitle').value.trim();
-      const date = document.getElementById('eventDate').value;
-      const location = document.getElementById('eventLocation').value.trim();
-      const description = document.getElementById('eventDesc').value.trim();
-
-      if (!title || !date || !location || !description) {
-        showToast('Please fill in all fields', true);
-        return;
-      }
-
-      await db.ref('events').push({
-        title,
-        date: new Date(date).toISOString(),
-        location,
-        description
-      });
-
-      document.getElementById('eventTitle').value = '';
-      document.getElementById('eventDate').value = '';
-      document.getElementById('eventLocation').value = '';
-      document.getElementById('eventDesc').value = '';
-      showToast('Event added successfully!');
-    });
-
-    window.deleteEvent = async (id) => {
-      if (!isAdmin) return;
-      await db.ref(`events/${id}`).remove();
-      showToast('Event deleted successfully!');
-    };
-
-    // Research
-    db.ref('researchPosts').on('value', (snapshot) => {
-      const data = snapshot.val();
-      const posts = data ? Object.keys(data).map(key => ({ id: key, ...data[key] })) : [];
-      allData.research = posts;
-      renderResearch(posts);
-      renderAdminResearch(posts);
-      updateStats();
-    });
-
-    function renderResearch(posts) {
-      const container = document.getElementById('researchContainer');
-      if (posts.length === 0) {
-        container.innerHTML = '<div class="empty-state"><div class="empty-state-icon">🔬</div><div>No research posts yet.</div></div>';
-        return;
-      }
-
-      container.innerHTML = posts.map(post => `
-        <div class="card">
-          <div class="card-header" style="padding: 24px;">
-            <div style="display: flex; align-items: center; gap: 16px; margin-bottom: 12px;">
-              <div class="card-icon" style="margin: 0;">🔬</div>
-              <div class="card-title" style="margin: 0;">${post.title}</div>
-            </div>
-            <div class="card-content" style="margin: 0; padding-top: 12px; border-top: 1px solid #f0f0f0;">${post.text}</div>
-            ${post.link ? `
-            <div style="margin-top: 16px; padding-top: 16px; border-top: 1px solid #f0f0f0;">
-              <a href="${post.link}" target="_blank" rel="noopener noreferrer" class="card-link">
-                Read More →
-              </a>
-            </div>
-            ` : ''}
-          </div>
-        </div>
-      `).join('');
-    }
-
-    function renderAdminResearch(posts) {
-      const list = document.getElementById('researchList');
-      if (posts.length === 0) {
-        list.innerHTML = '<div class="empty-state"><div class="empty-state-icon">🔬</div><div>No research posts yet.</div></div>';
-        return;
-      }
-
-      list.innerHTML = posts.map(post => `
-        <div class="admin-item">
-          <div class="admin-item-content">
-            <div class="admin-item-title">${post.title}</div>
-            <div class="admin-item-desc">${post.text}</div>
-            ${post.link ? `<div class="admin-item-meta">🔗 <a href="${post.link}" target="_blank" rel="noopener noreferrer">${post.link}</a></div>` : ''}
-          </div>
-          <button class="btn btn-danger btn-small" onclick="deleteResearch('${post.id}')">Delete</button>
-        </div>
-      `).join('');
-    }
-
-    document.getElementById('addResearchBtn').addEventListener('click', async () => {
-      if (!isAdmin) return;
-      const title = document.getElementById('researchTitle').value.trim();
-      const text = document.getElementById('researchText').value.trim();
-      const link = document.getElementById('researchLink').value.trim();
-
-      if (!title || !text) {
-        showToast('Please fill in title and text', true);
-        return;
-      }
-
-      await db.ref('researchPosts').push({
-        title,
-        text,
-        link: link || null
-      });
-
-      document.getElementById('researchTitle').value = '';
-      document.getElementById('researchText').value = '';
-      document.getElementById('researchLink').value = '';
-      showToast('Research post added successfully!');
-    });
-
-    window.deleteResearch = async (id) => {
-      if (!isAdmin) return;
-      await db.ref(`researchPosts/${id}`).remove();
-      showToast('Research post deleted successfully!');
-    };
-
-    // Students
-    let allStudents = [];
-
-    db.ref('students').on('value', (snapshot) => {
-      const data = snapshot.val();
-      const students = data ? Object.keys(data).map(key => ({ id: key, ...data[key] })) : [];
-      allData.students = students;
-      allStudents = students;
-      renderStudents(students);
-      renderAdminStudents(students);
-      updateStats();
-    });
-
-    // Search functionality
-    const searchInput = document.getElementById('studentSearch');
-    const clearBtn = document.getElementById('clearSearch');
-
-    searchInput.addEventListener('input', (e) => {
-      const query = e.target.value.toLowerCase().trim();
-      
-      if (query) {
-        clearBtn.style.display = 'flex';
-        const filtered = allStudents.filter(student => 
-          student.name.toLowerCase().includes(query) || 
-          student.role.toLowerCase().includes(query)
-        );
-        renderStudents(filtered);
-      } else {
-        clearBtn.style.display = 'none';
-        renderStudents(allStudents);
-      }
-    });
-
-    clearBtn.addEventListener('click', () => {
-      searchInput.value = '';
-      clearBtn.style.display = 'none';
-      renderStudents(allStudents);
-      searchInput.focus();
-    });
-
-    function renderStudents(students) {
-      const container = document.getElementById('studentsContainer');
-      if (students.length === 0) {
-        container.innerHTML = '<div class="empty-state"><div class="empty-state-icon">👥</div><div>No students yet.</div></div>';
-        return;
-      }
-
-      container.innerHTML = students.map(student => {
-        const initial = student.name.charAt(0).toUpperCase();
-        return `
-          <div class="card student-card">
-            <div class="student-avatar">${initial}</div>
-            <div class="student-name">${student.name}</div>
-            <div class="student-role">${student.role}</div>
-            <div class="student-motto">"${student.motto}"</div>
-          </div>
-        `;
-      }).join('');
-    }
-
-    function renderAdminStudents(students) {
-      const list = document.getElementById('studentsList');
-      if (students.length === 0) {
-        list.innerHTML = '<div class="empty-state"><div class="empty-state-icon">👥</div><div>No students yet.</div></div>';
-        return;
-      }
-
-      list.innerHTML = students.map(student => `
-        <div class="admin-item">
-          <div class="admin-item-content">
-            <div class="admin-item-title">${student.name}</div>
-            <div class="admin-item-meta">💼 ${student.role}</div>
-            <div class="admin-item-desc">"${student.motto}"</div>
-          </div>
-          <div style="display: flex; gap: 8px;">
-            <button class="btn btn-secondary btn-small" onclick="editStudent('${student.id}', '${student.name.replace(/'/g, "\\'")}', '${student.role.replace(/'/g, "\\'")}', '${student.motto.replace(/'/g, "\\'")}')">Edit</button>
-            <button class="btn btn-danger btn-small" onclick="deleteStudent('${student.id}')">Delete</button>
-          </div>
-        </div>
-      `).join('');
-    }
-
-    let editingStudentId = null;
-
-    document.getElementById('addStudentBtn').addEventListener('click', async () => {
-      if (!isAdmin) return;
-      const name = document.getElementById('studentName').value.trim();
-      const role = document.getElementById('studentRole').value.trim();
-      const motto = document.getElementById('studentMotto').value.trim();
-      const btn = document.getElementById('addStudentBtn');
-
-      if (!name || !role || !motto) {
-        showToast('Please fill in all fields', true);
-        return;
-      }
-
-      if (editingStudentId) {
-        // Update existing student
-        await db.ref(`students/${editingStudentId}`).update({
-          name,
-          role,
-          motto
-        });
-        showToast('Student updated successfully!');
-        editingStudentId = null;
-        btn.textContent = 'Add Student';
-        btn.classList.remove('btn-secondary');
-        btn.classList.add('btn-success');
-      } else {
-        // Add new student
-        await db.ref('students').push({
-          name,
-          role,
-          motto
-        });
-        showToast('Student added successfully!');
-      }
-
-      document.getElementById('studentName').value = '';
-      document.getElementById('studentRole').value = '';
-      document.getElementById('studentMotto').value = '';
-    });
-
-    window.editStudent = (id, name, role, motto) => {
-      if (!isAdmin) return;
-      editingStudentId = id;
-      document.getElementById('studentName').value = name;
-      document.getElementById('studentRole').value = role;
-      document.getElementById('studentMotto').value = motto;
-      
-      const btn = document.getElementById('addStudentBtn');
-      btn.textContent = 'Update Student';
-      btn.classList.remove('btn-success');
-      btn.classList.add('btn-secondary');
-      
-      // Scroll to form
-      document.getElementById('studentName').scrollIntoView({ behavior: 'smooth', block: 'center' });
-      document.getElementById('studentName').focus();
-    };
-
-    window.deleteStudent = async (id) => {
-      if (!isAdmin) return;
-      await db.ref(`students/${id}`).remove();
-      showToast('Student deleted successfully!');
-      
-      // Cancel edit mode if deleting the student being edited
-      if (editingStudentId === id) {
-        editingStudentId = null;
-        document.getElementById('addStudentBtn').textContent = 'Add Student';
-        document.getElementById('addStudentBtn').classList.remove('btn-secondary');
-        document.getElementById('addStudentBtn').classList.add('btn-success');
-        document.getElementById('studentName').value = '';
-        document.getElementById('studentRole').value = '';
-        document.getElementById('studentMotto').value = '';
-      }
-    };
-
-    // Contact Form
-    document.getElementById('contactForm').addEventListener('submit', async (e) => {
-      e.preventDefault();
-      
-      const name = document.getElementById('contactName').value.trim();
-      const email = document.getElementById('contactEmail').value.trim();
-      const concern = document.getElementById('contactConcern').value.trim();
-      const submitBtn = document.getElementById('submitContactBtn');
-
-      if (!name || !email || !concern) {
-        showToast('Please fill in all fields', true);
-        return;
-      }
-
-      submitBtn.disabled = true;
-      submitBtn.textContent = 'Sending...';
-
-      try {
-        await db.ref('contacts').push({
-          name,
-          email,
-          concern,
-          dateSubmitted: new Date().toISOString(),
-          status: 'unread'
-        });
-
-        showToast('Message sent successfully! We\'ll get back to you soon.');
-        document.getElementById('contactForm').reset();
-      } catch (error) {
-        showToast('Failed to send message. Please try again.', true);
-      } finally {
-        submitBtn.disabled = false;
-        submitBtn.textContent = 'Send Message';
-      }
-    });
-
-    // Contacts Listener
-    db.ref('contacts').on('value', (snapshot) => {
-      const data = snapshot.val();
-      const contacts = data ? Object.keys(data).map(key => ({ id: key, ...data[key] })) : [];
-      renderAdminContacts(contacts);
-    });
-
-    function renderAdminContacts(contacts) {
-      const list = document.getElementById('contactsList');
-      if (contacts.length === 0) {
-        list.innerHTML = '<div class="empty-state"><div class="empty-state-icon">✉️</div><div>No contact messages yet.</div></div>';
-        return;
-      }
-
-      // Sort by date, newest first
-      contacts.sort((a, b) => new Date(b.dateSubmitted) - new Date(a.dateSubmitted));
-
-      list.innerHTML = contacts.map(contact => `
-        <div class="admin-item">
-          <div class="admin-item-content">
-            <div class="admin-item-title">${contact.name}</div>
-            <div class="admin-item-meta">
-              📧 ${contact.email} • 📅 ${new Date(contact.dateSubmitted).toLocaleDateString('en-US', { 
-                month: 'short', 
-                day: 'numeric', 
-                year: 'numeric',
-                hour: '2-digit',
-                minute: '2-digit'
-              })}
-            </div>
-            <div class="admin-item-desc">${contact.concern}</div>
-          </div>
-          <button class="btn btn-danger btn-small" onclick="deleteContact('${contact.id}')">Delete</button>
-        </div>
-      `).join('');
-    }
-
-    window.deleteContact = async (id) => {
-      if (!isAdmin) return;
-      await db.ref(`contacts/${id}`).remove();
-      showToast('Contact message deleted successfully!');
-    };
-
-    // Update Stats
-    function updateStats() {
-      document.getElementById('statsStudents').textContent = allData.students.length;
-      document.getElementById('statsEvents').textContent = allData.events.length;
-      document.getElementById('statsResearch').textContent = allData.research.length;
-    }
-
-    // Element SDK Integration
-    async function onConfigChange(newConfig) {
-      document.getElementById('mainTitle').textContent = newConfig.main_title || defaultConfig.main_title;
-      document.getElementById('subtitle').textContent = newConfig.subtitle || defaultConfig.subtitle;
-      document.getElementById('roomMotto').textContent = newConfig.room_motto || defaultConfig.room_motto;
-
-      loadRoomLogo();
-      loadFavicon();
-
-      const primaryColor = newConfig.primary_color || defaultConfig.primary_color;
-      const accentColor = newConfig.accent_color || defaultConfig.accent_color;
-
-      const style = document.createElement('style');
-      style.textContent = `
-        .hero { background: linear-gradient(135deg, ${primaryColor} 0%, ${accentColor} 50%, ${accentColor}dd 100%); }
-        .section-title, .card-title, .admin-item-title, .student-name, .admin-tab.active, .navbar-brand { color: ${primaryColor} !important; }
-        .brand-logo, .card-icon, .student-avatar { background: linear-gradient(135deg, ${primaryColor}, ${accentColor}) !important; }
-        .btn-success, .btn-primary, .modal-header, .auth-tab.active { background: linear-gradient(135deg, ${primaryColor}, ${accentColor}) !important; }
-        .section-badge { background: ${primaryColor}1a !important; color: ${primaryColor} !important; }
-        .card::before { background: linear-gradient(90deg, ${primaryColor}, ${accentColor}, ${accentColor}dd) !important; }
-        .nav-link::after, .student-motto { border-color: ${primaryColor} !important; }
-        .carousel-nav:hover { background: ${primaryColor} !important; }
-        .btn-outline { color: ${primaryColor} !important; border-color: ${primaryColor} !important; }
-        .btn-outline:hover { background: ${primaryColor} !important; }
-      `;
-      document.head.appendChild(style);
-
-      if (carouselImages.length > 0) {
-        renderCarousel(carouselImages);
-      }
-    }
-
-    if (window.elementSdk) {
-      window.elementSdk.init({
-        defaultConfig,
-        onConfigChange,
-        mapToCapabilities: (config) => ({
-          recolorables: [
-            {
-              get: () => config.primary_color || defaultConfig.primary_color,
-              set: (value) => {
-                config.primary_color = value;
-                window.elementSdk.setConfig({ primary_color: value });
-              }
-            },
-            {
-              get: () => config.accent_color || defaultConfig.accent_color,
-              set: (value) => {
-                config.accent_color = value;
-                window.elementSdk.setConfig({ accent_color: value });
-              }
-            },
-            {
-              get: () => config.card_color || defaultConfig.card_color,
-              set: (value) => {
-                config.card_color = value;
-                window.elementSdk.setConfig({ card_color: value });
-              }
-            }
-          ],
-          borderables: [],
-          fontEditable: undefined,
-          fontSizeable: undefined
-        }),
-        mapToEditPanelValues: (config) => new Map([
-          ["main_title", config.main_title || defaultConfig.main_title],
-          ["subtitle", config.subtitle || defaultConfig.subtitle],
-          ["room_motto", config.room_motto || defaultConfig.room_motto],
-          ["room_logo_path", config.room_logo_path || defaultConfig.room_logo_path],
-          ["favicon_path", config.favicon_path || defaultConfig.favicon_path],
-          ["github_username", config.github_username || defaultConfig.github_username],
-          ["github_repo", config.github_repo || defaultConfig.github_repo]
-        ])
-      });
-    }
+    // Initialize
+    loadGallery();
+    loadTalents();
+    loadForum();
+    loadBirthdays();
+    loadAnnouncements();
+    loadAssignments();
+    loadEvents();
+    loadResearch();
+    loadStudents();
+    loadWeather();
+
+    // Initial button setup
+    document.getElementById('loginNavBtn').addEventListener('click', () => openAuthModal('login'));
+    document.getElementById('signupNavBtn').addEventListener('click', () => openAuthModal('signup'));
   </script>
- <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9a944f70a7c249d1',t:'MTc2NDk0NTc0OS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9a97c285365cce3d',t:'MTc2NDk4MTkyMC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
